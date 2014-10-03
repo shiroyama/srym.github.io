@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
+    <url>
+        <loc>http://blog.shiroyama.us/blog/2014/02/26/octopress/</loc>
+        <lastmod>2014-10-03T21:06:50+09:00</lastmod>
+    </url>
+    <url>
+        <loc>http://blog.shiroyama.us/blog/2014/03/18/deploygate/</loc>
+        <lastmod>2014-10-03T21:06:50+09:00</lastmod>
+    </url>
+    <url>
+        <loc>http://blog.shiroyama.us/blog/2014/04/28/turned31/</loc>
+        <lastmod>2014-10-03T21:06:50+09:00</lastmod>
+    </url>
+    <url>
+        <loc>http://blog.shiroyama.us/blog/2014/09/20/rubymotion-for-android/</loc>
+        <lastmod>2014-10-03T21:06:50+09:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://blog.shiroyama.us/blog/2014/10/03/rubymotion-android-custom-application-class/
+        </loc>
+        <lastmod>2014-10-03T22:38:46+09:00</lastmod>
+    </url>
+    <url>
+        <loc>http://blog.shiroyama.us/blog/archives/</loc>
+        <lastmod>2014-10-03T22:38:46+09:00</lastmod>
+    </url>
+    <url>
+        <loc>http://blog.shiroyama.us/</loc>
+        <lastmod>2014-10-03T22:38:46+09:00</lastmod>
+    </url>
+</urlset>

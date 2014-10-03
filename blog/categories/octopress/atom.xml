@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Octopress | 白山軟件有限公司]]></title>
+  <link href="http://blog.shiroyama.us/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://blog.shiroyama.us/"/>
+  <updated>2014-10-03T22:38:47+09:00</updated>
+  <id>http://blog.shiroyama.us/</id>
+  <author>
+    <name><![CDATA[Fumihiko Shiroyama]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[エンジニアのブログは Octopress が最適]]></title>
+    <link href="http://blog.shiroyama.us/blog/2014/02/26/octopress/"/>
+    <updated>2014-02-26T23:54:23+09:00</updated>
+    <id>http://blog.shiroyama.us/blog/2014/02/26/octopress</id>
+    <content type="html"><![CDATA[<h3>ブログを Octopress に移行した</h3>
+
+<p>既存のブログを <a href="http://octopress.org/" title="Octopress">Octopress</a> に移行した。<br/>
+理由は以下の通りである。</p>
+
+<ul>
+<li>無料</li>
+<li>Markdown で書ける</li>
+<li>独自ドメインが利用できる</li>
+<li>Vim で書いて <code>rake deploy</code> するとブログが公開されるのが COOL</li>
+</ul>
+
+
+<p>Markdown は表現力に乏しいので大して好きでもないのだが、何かをメモする程度なら非常に簡便で技術ブログには向いている。<br/>
+また、ブログを書こうと思い立った瞬間に普段作業しているターミナルから Vim でブログを書いて <code>rake deploy</code> すると GitHub 上に push されてブログが公開されるというのは UX として非常に良い。</p>
+
+<p>折角なので Octopress 導入メモを残すことにする。これから使ってみたい方の参考になれば幸い。</p>
+
+<h3>Octopress とは</h3>
+
+<p>ブログ記事を簡単に生成するためのフレームワーク。<br/>
+ブログ記事そのものは <a href="http://pages.github.com/" title="GitHub Pages">GitHub Pages</a> 等にホスティングする。</p>
+
+<h3>GitHub Pages とは</h3>
+
+<p>GitHub 上で静的なページを簡単に生成・管理する仕組み。<br/>
+GitHub に <code>your_name.github.io</code> というリポジトリを作成して push するだけで <code>http://your_name.github.io</code> にアクセスすると静的コンテンツにアクセスすることができる。<br/>
+ここには HTML や CSS, JavaScript 等を普通に配置することが出来るので、特にブログにこだわらない場合は GitHub Pages だけで立派な静的なページを作成することができる。</p>
+
+<p>リポジトリのルートに CNAME というファイルを設置し、中に独自ドメインを記入することで独自ドメインも利用可能。</p>
+
+<p><code>bash
+% cat&lt;&lt;'EOS'&gt;CNAME
+blog.your-domain.com
+EOS
+</code></p>
+
+<p>もちろん、DNS サーバの CNAME レコードに your_name.github.io. を設定する必要がある。</p>
+
+<p>```bash</p>
+
+<h1>擬似コード</h1>
+
+<p>blog.your-domain.com    IN    CNAME    your_name.github.io.
+```</p>
+
+<p>CNAME レコードは （your-domain.com のような）Apex ドメインには指定できないので、その場合は <a href="http://aws.amazon.com/jp/route53/faqs/" title="Amazon Route 53 に関するよくある質問">Route 53</a> のような A レコードの Alias レコードを設定できるような DNS の利用を検討するか、さもなくば <a href="https://help.github.com/articles/setting-up-a-custom-domain-with-pages" title="Setting up a custom domain with Pages">GitHub の DNS を IP 直指定</a> する必要がある。<br/>
+この方法は GitHub の CDN の仕組みを利用できないので明確に非推奨とされている。素直に <code>subdomain.your-domain.com</code> の方法を採るほうが良い。</p>
+
+<h3>5分で出来る初めての Octopress</h3>
+
+<p>octopress を GitHub からクローンしてくる。</p>
+
+<p><code>bash
+git clone git://github.com/imathis/octopress.git octopress
+cd octopress
+</code></p>
+
+<p>必要な gem をインストールする。</p>
+
+<p><code>bash
+bundle --path vendor/bundle
+</code></p>
+
+<p>デフォルトのブログテーマをインストールする。</p>
+
+<p><code>bash
+bundle exec rake install
+</code></p>
+
+<p>プレビューしてみる。</p>
+
+<p><code>bash
+bundle exec rake preview
+</code></p>
+
+<p><code>http://localhost:4000/</code> にアクセスすると、ブログのプレビューを見ることが出来る。</p>
+
+<p><img src="/images/2014-02-26/octopress_preview.png" title="&lsquo;octopress preview&rsquo; &lsquo;octopress preview&rsquo;" ></p>
+
+<h3>Octopress の初期設定</h3>
+
+<p>Octopress のプレビュー確認が出来たので初期設定を施していく。</p>
+
+<p><code>bundle exec rake setup_github_pages</code> タスクを実行し GitHub Pages にデプロイするファイルを生成する。<br/>
+この時、<code>your_name.github.io</code> のように GitHub Pages のリポジトリを git か https プロトコルで指定してやる。</p>
+
+<p>```bash</p>
+
+<p>% bundle exec rake setup_github_pages</p>
+
+<p>Enter the read/write url for your repository
+(For example, &lsquo;git@github.com:your_username/your_username.github.io.git)</p>
+
+<pre><code>       or 'https://github.com/your_username/your_username.github.io')
+</code></pre>
+
+<p>Repository url: git@github.com:srym/srym.github.io.git
+Added remote git@github.com:srym/srym.github.io.git as origin
+Set origin as default remote
+Master branch renamed to &lsquo;source&rsquo; for committing your blog source files
+rm -rf <em>deploy
+mkdir </em>deploy
+cd <em>deploy
+Initialized empty Git repository in /Users/shiroyama/playGround/octopress/</em>deploy/.git/
+[master (root-commit) dacfaa2] Octopress init
+ 1 file changed, 1 insertion(+)
+ create mode 100644 index.html
+cd &ndash;</p>
+
+<hr />
+
+<h2>Now you can deploy to git@github.com:srym/srym.github.io.git with <code>rake deploy</code></h2>
+
+<p>```</p>
+
+<p>このタスクを実行すると、以下のように GitHub Pages のリポジトリが自動的に origin に指定される。</p>
+
+<p><code>bash
+% git remote -v
+octopress       git://github.com/imathis/octopress.git (fetch)
+octopress       git://github.com/imathis/octopress.git (push)
+origin          git@github.com:srym/srym.github.io.git (fetch)
+origin          git@github.com:srym/srym.github.io.git (push)
+</code></p>
+
+<p>次に _config.yml を編集し、ブログのタイトルなどを入力する。</p>
+
+<p>```yaml</p>
+
+<h1>_config.yml</h1>
+
+<p>url: <a href="http://blog.shiroyama.us">http://blog.shiroyama.us</a>
+title: 白山軟件有限公司
+subtitle: 東洋太平洋ブログ三日坊主チャンピオンのブログ
+author: Fumihiko Shiroyama
+simple_search: <a href="http://google.com/search">http://google.com/search</a>
+description:
+```</p>
+
+<p>以上で最低限の初期設定は完了となる。<br/>
+twitter 連携などを設定する箇所もあるが、これについては後述する。</p>
+
+<h3>記事を書く</h3>
+
+<p>Octopress の初期設定ができたので、いよいよブログ記事を作成する。<br/>
+以下の Rake タスクで記事のひな形が生成される。</p>
+
+<p>```bash</p>
+
+<h1>shell によっては &ldquo;new_post[title]&rdquo; とする必要があるかも知れない</h1>
+
+<p>% bundle exec rake new_post[title]</p>
+
+<p>mkdir -p source/<em>posts
+Creating new post: source/</em>posts/2014-02-26-title.markdown
+```</p>
+
+<p>生成された <code>source/_posts/2014-02-26-title.markdown</code> を Vim などのエディタで開いて編集する。<br/>
+ファイル上部にはブログのメタ情報が記述されているので適宜編集する。</p>
+
+<h2>```yaml</h2>
+
+<p>layout: post
+title: &ldquo;&lsquo;エンジニアのブログは Octopress が最適&rsquo;&rdquo;
+date: 2014-02-26 23:54:23 +0900
+comments: true</p>
+
+<h2>categories:&ndash;</h2>
+
+<p>```</p>
+
+<p>ブログのカテゴリは以下のように色々な方法で指定することが出来る。</p>
+
+<p>```</p>
+
+<h1>One category</h1>
+
+<p>categories: Sass</p>
+
+<h1>Multiple categories example 1</h1>
+
+<p>categories: [CSS3, Sass, Media Queries]</p>
+
+<h1>Multiple categories example 2</h1>
+
+<p>categories:
+&ndash; CSS3
+&ndash; Sass
+&ndash; Media Queries
+```</p>
+
+<p>記事はメタ情報の <code>---</code> の下から Markdown で好きなだけ書くことが出来る。<br/>
+Markdown の文法についてはここでは触れない。</p>
+
+<h3>画像を載せる</h3>
+
+<p>Octopress で唯一面倒なのが画像を載せる方法だが、出来ないことはないのでメモしておく。</p>
+
+<p>```</p>
+
+<h1>basic image</h1>
+
+<p><img class="[class names]" src="/path/to/image" title="[width] [height] [title text [alt text]]" ></p>
+
+<h1>examples</h1>
+
+<p><img class="<a" src="href="http://placekitten.com/890/280">http://placekitten.com/890/280</a>">
+<img class="left <a" src="href="http://placekitten.com/320/250">http://placekitten.com/320/250</a>" title="Place Kitten #2" >
+<img class="right <a" src="href="http://placekitten.com/300/500">http://placekitten.com/300/500</a>" width="150" height="250" title="Place Kitten #3" >
+<img class="right <a" src="href="http://placekitten.com/300/500">http://placekitten.com/300/500</a>" width="150" height="250" title="&lsquo;Place Kitten #4&rsquo; &lsquo;An image of a very cute kitten&rsquo;" >
+```</p>
+
+<p>画像ファイルは <code>source/images</code> の下に好きなだけ置くことが出来る。<br/>
+日付ごとにディレクトリを掘って画像を配置し、</p>
+
+<p><code>
+<img src="/images/2014-02-26/octopress_preview.png" title="octopress preview" alt="octopress preview">
+</code></p>
+
+<p>のようにすると問題なく画像を表示できたが、はっきり言って面倒だったので個人的には今後は Gyazo 等を使うと思う。</p>
+
+<h3>GitHub Pages にデプロイする</h3>
+
+<p>いよいよブログをデプロイする。Rake タスク一発である。</p>
+
+<p><code>bash
+bundle exec rake deploy
+</code></p>
+
+<p>もしデプロイに失敗したらエラーログを注意深く眺める必要があるが、もしかしたら <code>bundle exec rake setup_github_pages</code> したときに既に your_name.github.io が存在していて fast-forward ではないせいで git push に失敗しているのかもしれない。<br/>
+その場合は Rakefile を開き、<code>git push -f origin</code> にして force push してやれば良い。</p>
+
+<p>git push -f の意味が分からない人は無闇に実行しないこと。当ブログでは責任を一切持てない。</p>
+
+<p><code>ruby
+262   cd "#{deploy_dir}" do
+263     system "git add -A"
+264     puts "\n## Committing: Site updated at #{Time.now.utc}"
+265     message = "Site updated at #{Time.now.utc}"
+266     system "git commit -m \"#{message}\""
+267     puts "\n## Pushing generated #{deploy_dir} website"
+268     #system "git push origin #{deploy_branch}"
+269     system "git push -f origin #{deploy_branch}"
+270     puts "\n## Github Pages deploy complete"
+271   end
+</code></p>
+
+<h3>Octopress で独自ドメインを利用する</h3>
+
+<p><code>source/CNAME</code> に独自ドメインを記述するだけである。<br/>
+DNS の設定等は GitHub Pages で独自ドメインを使う時と同様である。</p>
+
+<p><code>bash
+echo 'blog.shiroyama.us' &gt;&gt; source/CNAME
+</code></p>
+
+<h3>テーマを変更する</h3>
+
+<p>Octopress で利用できるカスタムテーマは数多くある。<br/>
+<a href="http://opthemes.com/" title="http://opthemes.com/">http://opthemes.com/</a> などを参照するといいだろう。<br/>
+テーマのインストール方法は各テーマのページに書いてあるが、どれも <code>rake install</code> するだけといった風に簡単である。</p>
+
+<h3>外部サービスと連携する</h3>
+
+<p>初期設定に使った <code>_config.yml</code> の後半に Twitter, LinkedIn, Google+ 等との連携の設定箇所がある。<br/>
+どれも以下のようにアカウントを書くだけといった具合の簡単さなので試してみて欲しい。</p>
+
+<p>```</p>
+
+<h1>Twitter</h1>
+
+<p>twitter_user: fushiroyama
+twitter_tweet_button: true</p>
+
+<h1>Google +1</h1>
+
+<p>google_plus_one: true
+google_plus_one_size: medium
+```</p>
+
+<h3>octopress リモートリポジトリも自分で管理したい</h3>
+
+<p>octopress を clone してきて普通にセットアップすると、以下のように octopress リモートリポジトリは開発元の imathis リポジトリを指すことになると思う。</p>
+
+<p><code>bash
+% git remote -v
+octopress       git://github.com/imathis/octopress.git (fetch)
+octopress       git://github.com/imathis/octopress.git (push)
+</code></p>
+
+<p>個人的には、原稿の元になる octopress リポジトリも自分のリポジトリに管理してどこででもブログを書きたい。<br/>
+その場合には以下のようにすれば出来た。</p>
+
+<ol>
+<li>octopress のリポジトリから自分のリポジトリに <strong>fork</strong> する。</li>
+<li>fork した自分のリポジトリを clone する。</li>
+<li>以下、全く同じように <code>bundle exec rake setup_github_pages</code> する。</li>
+</ol>
+
+
+<p>```bash
+% git remote -v
+octopress       git@github.com:srym/octopress.git (fetch)
+octopress       git@github.com:srym/octopress.git (push)</p>
+
+<p>% git push octopress source
+```</p>
+
+<h3>その他</h3>
+
+<p>思いついたら追記する。</p>
+]]></content>
+  </entry>
+  
+</feed>

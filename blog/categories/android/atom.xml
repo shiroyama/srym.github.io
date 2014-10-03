@@ -1,0 +1,846 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Android | 白山軟件有限公司]]></title>
+  <link href="http://blog.shiroyama.us/blog/categories/android/atom.xml" rel="self"/>
+  <link href="http://blog.shiroyama.us/"/>
+  <updated>2014-10-03T22:38:47+09:00</updated>
+  <id>http://blog.shiroyama.us/</id>
+  <author>
+    <name><![CDATA[Fumihiko Shiroyama]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[RubyMotion for Android でカスタム Appliation クラスを利用する]]></title>
+    <link href="http://blog.shiroyama.us/blog/2014/10/03/rubymotion-android-custom-application-class/"/>
+    <updated>2014-10-03T21:16:29+09:00</updated>
+    <id>http://blog.shiroyama.us/blog/2014/10/03/rubymotion-android-custom-application-class</id>
+    <content type="html"><![CDATA[<p><a href="http://www.rubymotion.com/" title="RubyMotion">RubyMotion</a> のバージョンが 3.1 になり、Android 版でカスタム Application クラスが利用できるようになった。</p>
+
+<p>実を言うとこれまでは独自定義の Android クラスを利用することが出来なかったのだが、その旨 RubyMotion のサポートで質問したところ、作者の Laurent さんが一瞬で対応してくれたのだ。<strong>なんてCOOLなんだ！みんなも RubyMotion を買おう！</strong></p>
+
+<p>独自 Application クラスの使い方を簡単に紹介しておく。RubyMotion for Android のそもそもの HelloWorld は前回書いた<a href="http://blog.shiroyama.us/blog/2014/09/20/rubymotion-for-android/" title="RubyMotion for Android を使ってみる">拙エントリ</a>を参考にして欲しい。</p>
+
+<h4>1) RubyMotion を更新</h4>
+
+<p>以下のコマンドで更新。<code>--pre</code> を忘れないようにしよう</p>
+
+<p>```bash
+% sudo motion update &mdash;pre</p>
+
+<p>Password:
+Connecting to the server&hellip;
+Downloading software update&hellip;</p>
+
+<h6>################################################################## 100.0%</h6>
+
+<p>Installing software update&hellip;
+RubyMotion pre-release update installed in /Library/RubyMotionPre</p>
+
+<p>= RubyMotion 3.1 =</p>
+
+<ul>
+<li>Added the RUBYMOTION_VERSION and RUBYMOTION_ENV constants, which have the
+same values as RubyMotion for iOS / OS X.</li>
+<li>Added support for the Android R class. Thanks to Mark Villacampa for the
+patch.</li>
+<li>Added the `app.application_class' setting, which can be used to specify
+the name of a custom Android::App::Application subclass that should be used
+by the application. By default, the variable has a nil value, which means
+a default class will be used.</li>
+<li>Improved app versioning. <code>app.api_version' will now map to the
+</code>minSdkVersion' manifest attribute. Added <code>app.target_api_version' which
+will map to</code>targetSdkVersion'. Both settings will have the latest API
+version as the default value, except for 20 (L). We recommend that you
+leave <code>app.target_api_version' intact and only modify</code>app.api_version'.</li>
+<li>Improved the REPL so that &ldquo;self&rdquo; now always points to the current app
+activity. (Only works for API 14 or above.)</li>
+<li>Added support for `&amp;foo' constructs (which should dispatch #to_proc).</li>
+<li>Added Symbol#to_proc.</li>
+<li>Fixed a bug where `app.vendor_project' would generate a .bridgesupport
+file containing illegal XML characters (such as &lsquo;&lt;&rsquo; or &lsquo;>&rsquo;) inside
+attributes. Thanks to Mark Villacampa for the patch.</li>
+<li>Fixed a bug where the dispatch of an overloaded Java method without
+arguments would fail. The runtime will now return the first method of the
+list (since we can&rsquo;t match any argument).</li>
+<li>Fixed the `rake {emulator,device}&lsquo; tasks to terminate the application in
+case the user leaves the REPL session.</li>
+<li>Fixed a bug when dispatching certain methods using reflection (REPL) that
+return java.lang.Object.</li>
+<li>Fixed a bug in the compiler where a crash would happen when trying to
+override a Java method accepting a Java array as argument.</li>
+<li>Fixed a bug in the dispatcher when yielding certain runtime-generated
+blocks (ex. enumerators) where the return value would be destroyed.
+```</li>
+</ul>
+
+
+<h4>2) カスタム Application クラスを準備</h4>
+
+<p>Android 用のテンプレートを生成し、</p>
+
+<p><code>bash
+% motion create --template=android Hello
+% cd ./Hello
+</code></p>
+
+<p>Android::App::Application クラスを継承した独自 Application クラスを定義する。</p>
+
+<p>試しに onCreate(), onTerminate() でログを出すようにしてみた。<br/>
+※ onTerminate() は<a href="http://developer.android.com/reference/android/app/Application.html#onTerminate()">実機では呼ばれない</a>ので注意。理解の便宜上書いてみた。</p>
+
+<p>```ruby
+% vim app/my_application.rb</p>
+
+<p>class MyApplication &lt; Android::App::Application
+  def onCreate()</p>
+
+<pre><code>super
+puts "Application#onCreate()"
+</code></pre>
+
+<p>  end</p>
+
+<p>  # will never be called on a production Android device
+  def onTerminate()</p>
+
+<pre><code>super
+puts "Application#onTTerminate()"
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<h4>3) Rakefile を修正</h4>
+
+<p><code>app.application_class</code> に独自定義の Application クラスを指定</p>
+
+<p>```ruby
+% vim Rakefile</p>
+
+<h1>&ndash;<em>&ndash; coding: utf-8 &ndash;</em>&ndash;</h1>
+
+<p>$:.unshift(&ldquo;/Library/RubyMotionPre/lib&rdquo;)
+require &lsquo;motion/project/template/android&rsquo;</p>
+
+<p>Motion::Project::App.setup do |app|
+  # Use `rake config' to see complete project settings.
+  app.name = &lsquo;Hello&rsquo;
+  app.application_class = &lsquo;MyApplication&rsquo;
+end
+```</p>
+
+<p>最初どんなプロパティか分からなくて戸惑ったけど <code>/Library/RubyMotionPre/lib/motion/project/template/android.rb</code> みたらすぐ分かった。</p>
+
+<h4>4) 確認</h4>
+
+<p>確認してみよう！</p>
+
+<p>```bash
+% rake device</p>
+
+<pre><code>Create ./build/Development-19/classes.dex
+Create ./build/Development-19/Hello.apk
+  Sign ./build/Development-19/Hello.apk
+ Align ./build/Development-19/Hello.apk
+</code></pre>
+
+<p>   Install ./build/Development-19/Hello.apk
+4066 KB/s (638813 bytes in 0.153s)</p>
+
+<pre><code> Start com.yourcompany.hello/.MainActivity
+</code></pre>
+
+<p>&mdash;&mdash;&mdash;&mdash;&ndash; beginning of /dev/log/main
+&mdash;&mdash;&mdash;&mdash;&ndash; beginning of /dev/log/system</p>
+
+<p>I/com/yourcompany/hello(11394): Application#onCreate()
+```</p>
+
+<p>一番下の行に注目！Application の開始時に一度だけ出ている！</p>
+
+<p>前述のとおり onTerminate() は実機では呼ばれないが仕様なので気にしないでください。</p>
+
+<h3>まとめ</h3>
+
+<p>独自 Application クラスを利用できるようになったことで実戦的なアプリ開発の可能性がグッと広がったように思う。<br/>
+ライブラリの初期化とか、静的 Context 取得メソッドとか、アプリケーションライフサイクルで管理する Observer とか、実際の Android 開発では利用シーンに枚挙にいとまがない。</p>
+
+<p>いよいよ次回は少し実戦的なアプリを実装して GitHub に上げてその記事を書こうと思う。それでは楽しい RubyMotion ライフを！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[RubyMotion for Android を使ってみる]]></title>
+    <link href="http://blog.shiroyama.us/blog/2014/09/20/rubymotion-for-android/"/>
+    <updated>2014-09-20T15:53:05+09:00</updated>
+    <id>http://blog.shiroyama.us/blog/2014/09/20/rubymotion-for-android</id>
+    <content type="html"><![CDATA[<p>9/16日、<a href="http://blog.rubymotion.com/post/97668474211/announcing-the-public-beta-of-rubymotion-for-android" title="公式ブログ">RubyMotion が Android に対応し public Beta として公開された。</a></p>
+
+<p>9/18〜20まで開催された <a href="http://rubykaigi.org/2014/" title="RubyKaigi 2014">RubyKaigi 2014</a> でも <a href="http://rubykaigi.org/2014/presentation/S-LaurentSansonetti" title="Inside RubyMotion for Android">RubyMotion for Android に関するセッション</a> があり、かなり感銘を受けたのでブログにまとめることにする。</p>
+
+<h3>RubyMotion とは何か</h3>
+
+<p>すごく簡単に言うと iOS や OSX, そして Android のネイティブアプリを Ruby で書けるというツール群である。</p>
+
+<p><a href="http://www.rubymotion.com/">http://www.rubymotion.com/</a></p>
+
+<p>Titanium や PhoneGap とは明確に異なり、各ランタイムが直接解釈できるネイティブコードを生成するのが特徴。従ってパフォーマンス的なオーバーヘッドがほとんどなく ※1 、利用できる OS の API にも基本的に制限がない。</p>
+
+<p>何より Ruby で書けるのである。なんて素晴らしいんだ。</p>
+
+<h3>利用方法</h3>
+
+<p>公式サイトの英語を読むのがめんどくさい人のために2014年9月時点でのライセンス形態等について箇条書きしておく。</p>
+
+<ul>
+<li><strong>有料。</strong>199.99ドル
+
+<ul>
+<li>1年間のバグフィクス・改良などのアップデートを受けられる</li>
+<li>1年間のサポートのためのプライベートチケットを切ることができる</li>
+<li>自分の理解では1度買えば1年経つとアップデートは受けられないがそのまま使い続けられる</li>
+</ul>
+</li>
+<li>30日間はトライアル期間として気に入らなければいつでもやめることができる</li>
+<li>今は学割的なものはない</li>
+<li>1年経つと99.99ドルで（アップデート等の）ライセンスを延長できる</li>
+<li>言い忘れたけど OSX の動く Mac が必要なのでそれ以外の環境の方は残念</li>
+</ul>
+
+
+<p>これを高いと見るか安いと見るかは価値観次第だと思うが、トライアル期間があるので少しでも興味がある人は一度試してみると良いと思う。（最初にカードを登録する必要あり。30日以内のキャンセルは &ldquo;返金扱い&rdquo; なのかそれとも &ldquo;30日後に初めて課金される&rdquo; のかは知らない。興味もない）</p>
+
+<h3>使ってみる</h3>
+
+<p><a href="http://sites.fastspring.com/hipbyte/product/rubymotion" title="公式サイト">公式サイト</a> から早速購入してみよう。RubyKaigi 期間中はなんと15%オフ（毎年恒例らしい）なのだが、ブログにまとめるのをモタモタしているうちに閉会してしまった…</p>
+
+<p><img src="/images/rubymotion/rubymotion01.jpg" title="&lsquo;buy rubymotion&rsquo; &lsquo;buy rubymotion&rsquo;" ></p>
+
+<p>購入し終わると登録したメールアドレス宛にライセンスキーとインストーラのダウンロードリンクが届く。 ダウンロードリンクは忘れがちなのでメールは保存しておこう。</p>
+
+<p>ダブルクリックして指示に従っていると何の問題もなくインストールは完了する。</p>
+
+<p>Xcode や AndroidStudio と違い、専用の（エディタを含んだ GUI の）IDE 環境がインストールされる訳ではない。RubyMotion は CUI のビルドツール群という印象に近い。</p>
+
+<p>ツール群は</p>
+
+<p><code>bash
+% /Library/RubyMotion/
+</code></p>
+
+<p>以下にインストールされ、最も使われる（というかこれしか使ったことがない）motion コマンドは</p>
+
+<p><code>bash
+% /usr/bin/motion
+</code></p>
+
+<p>にリンクされる。普通にしているとここにはパスが通っているはずなのでコンソールで motion とタイプするだけですぐに利用できるはずだ。</p>
+
+<h3>Hello from RubyMotion for Android</h3>
+
+<p>それでは RubyMotion for Android を使って Hello World をしてみよう。<br/>
+<a href="http://www.rubymotion.com/developer-center/guides/getting-started/#_android" title="Getting Started">公式の Getting Started をなぞるだけ</a> で実に簡単に動かすことができるが、例によって英語の説明を読みたくない人のために箇条書きにする。</p>
+
+<h4>1. プレビュー版をインストール</h4>
+
+<p>今日時点で Android 版は public Beta という扱いなので、標準のコンポーネントには含まれていない。以下のコマンドでインストールする。</p>
+
+<p><code>bash
+% sudo motion update --pre
+</code></p>
+
+<p>ファイルは以下のパスにインストールされるが普通に使っている限り意識することはない。</p>
+
+<p><code>bash
+% /Library/RubyMotionPre
+</code></p>
+
+<h4>2. JDK をインストール</h4>
+
+<p>JDK 6 をインストールする必要がある。</p>
+
+<blockquote><p>7でも動くけど6を推奨</p></blockquote>
+
+<p>みたいなこと書いてあるけど、<strong>7だと動かない場合があった</strong> ※2 ので言うとおりにすることを強くおすすめする。</p>
+
+<p>OpenJDK か Oracle の JDK か、みたいなことは書いてないが、公式サイトからは <a href="http://support.apple.com/kb/DL1572" title="Java for OSX 2014-001">Apple の Java for OSX 2014-001</a> というのにリンクが張ってあったので素直にこれを入れると良いだろう。</p>
+
+<p>Mac に複数の JDK が入っている場合はやっかいで、僕の知る限り Java には rbenv 的なランタイムのバージョン管理とサンドボックス化を提供してくれる仕組みはない（最近の言語でこういった仕組みがない言語の方がむしろ珍しいよね…まったくトホホだ）ので、自分で JAVA_HOME を変えてやる必要がある。</p>
+
+<p><code>bash
+% ls -l /System/Library/Frameworks/JavaVM.framework/Versions
+</code></p>
+
+<p>とかしてみて、<strong>1.6</strong> がある且つ複数のバージョンが入っているようなら .zshrc とかに</p>
+
+<p><code>``bash
+% cat&lt;&lt;'EOS'&gt;&gt;~/.zshrc
+export JAVA_HOME=</code>/System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/java_home -v &ldquo;1.6&rdquo;`
+PATH=${JAVA_HOME}/bin:${PATH}
+EOS</p>
+
+<p>% source ~/.zshrc</p>
+
+<p>% java -version
+java version &ldquo;1.6.0_65&rdquo;
+Java&trade; SE Runtime Environment (build 1.6.0_65-b14-466.1-11M4716)
+Java HotSpot&trade; 64-Bit Server VM (build 20.65-b04-466.1, mixed mode)
+```</p>
+
+<p>のようにして java 1.6 が使われていることを確認しておこう。<a href="http://qiita.com/ringo/items/db58b34dc02a941b297f" title="OSXでJavaのバージョンを切り替える">この Qiita</a> を参考にすると良い。</p>
+
+<h4>3. Androiid SDK をインストール</h4>
+
+<p>公式サイトの例に従い、まずは RubyMotion for Android の作業ディレクトリを作成する。</p>
+
+<p><code>bash
+% mkdir ~/android-rubymotion
+</code></p>
+
+<p>次に公式サイトでは <a href="http://developer.android.com/sdk/index.html" title="Eclipse ADT">Eclipse ADT</a> をインストールしてその sdk をコピーするように書いてあるが、今更 Eclipse を使っている人も居ないと思うので <a href="https://developer.android.com/sdk/installing/studio.html" title="Android Studio">Android Studio</a> の sdk をシンボリックリンクで利用すると良い。SDK さえ入れられれば方法は問わない。 ※3</p>
+
+<p><code>bash
+% cd ~/android-rubymotion
+% ln -s /Applications/Android\ Studio.app/sdk sdk
+% ls sdk/
+add-ons        build-tools    docs           extras         platform-tools platforms      samples        sources        system-images  temp           tools
+</code></p>
+
+<h4>4. Androiid NDK をインストール</h4>
+
+<p>ネイティブコンパイルのために <a href="https://developer.android.com/tools/sdk/ndk/index.html" title="Android NDK">Mac OS X 64-bit NDK for 32-bit target</a> を入れる必要がある。</p>
+
+<p>間違えやすいが、必ず <strong>Platform (32-bit target)</strong> かつ <strong>Mac OS X 64-bit</strong> の NDK でなくてはならない。さもなくば動かない旨明記してある。</p>
+
+<p>ダウンロードしたら展開して sdk と同じディレクトリにコピーする。</p>
+
+<p><code>bash
+% tar jxvf android-ndk32-r10b-darwin-x86_64.tar.bz2
+% cp -r android-ndk-r10 ~/android-rubymotion/ndk
+% cd ~/android-rubymotion
+% ls ndk/
+GNUmakefile               build                     find-win-host.cmd         ndk-depends               ndk-gdb-py.cmd            ndk-which                 remove-windows-symlink.sh tests
+README.TXT                docs                      ndk-build                 ndk-gdb                   ndk-gdb.py                platforms                 samples                   toolchains
+RELEASE.TXT               documentation.html        ndk-build.cmd             ndk-gdb-py                ndk-stack                 prebuilt                  sources
+</code></p>
+
+<p>最後に SDK と NDK を環境変数に登録する。</p>
+
+<p>```bash
+% cat&lt;&lt;&lsquo;EOS&rsquo;>>~/.zshrc
+export RUBYMOTION_ANDROID_SDK=~/android-rubymotion/sdk
+export RUBYMOTION_ANDROID_NDK=~/android-rubymotion/ndk
+EOS</p>
+
+<p>% source ~/.zshrc</p>
+
+<p>% env | grep RUBYMOTION_ANDROID
+RUBYMOTION_ANDROID_SDK=/Users/shiroyama/android-rubymotion/sdk
+RUBYMOTION_ANDROID_NDK=/Users/shiroyama/android-rubymotion/ndk
+```</p>
+
+<p>こんな感じになっていればOK。</p>
+
+<h4>5. 必要なバージョンの SDK パッケージを入手</h4>
+
+<p>自分の持っている Android のバージョン (API Level) に合わせてビルドするため、SDK Manager からパッケージを入手する。自分の持っている Android の API レベルは <a href="http://so-zou.jp/mobile-app/tech/android/data/api-level/" title="AndroidのバージョンとAPIレベルの対応関係">このへん</a> を参考にすれば良いだろう。<br/>
+例えば Android 4.4 KitKat の端末を持っている場合は API Level 19 ということになる。</p>
+
+<p>確認し終わったら、</p>
+
+<p><code>bash
+% cd ~/android-rubymotion
+% ./sdk/tools/android
+</code></p>
+
+<p>とすると下図のようなウィンドウが表示される。</p>
+
+<p><img src="/images/rubymotion/rubymotion02.jpg" title="&lsquo;SDK Manager&rsquo; &lsquo;SDK Manager&rsquo;" ></p>
+
+<p>対応する API レベルのパッケージをとりあえず全部入れておけば間違いない。 ※4</p>
+
+<h4>6. 端末を開発モードへ</h4>
+
+<p>既に Android 開発をしたことのある人はここは読み飛ばしてください。<br/>
+初めての人は <a href="http://smhn.info/201311-android-developer-option" title="Androidの「開発者向けオプション」を表示する方法">このへん</a> を参考にしながら開発者モードを表示して USB デバッグを有効にしてください。</p>
+
+<p>いよいよ準備完了！</p>
+
+<h4>7. Hello World</h4>
+
+<p>任意の場所で以下のコマンドを実行すると、RubyMotion for Android 用のテンプレートプロジェクトが生成される。</p>
+
+<p><code>bash
+% motion create --template=android Hello
+% cd Hello
+</code></p>
+
+<p>Android 端末が USB で接続され、開発用に認識されていることを確認してから ※5 いよいよ実行してみよう。</p>
+
+<p><code>bash
+% rake device
+</code></p>
+
+<p>コンソールに以下のようなログが表示され、Android 端末にタイトルが Hello とだけ書かれた真っ黒な画面が表示されたら成功である。</p>
+
+<p>```bash
+% rake device</p>
+
+<p>   Compile ./app/main_activity.rb</p>
+
+<pre><code>Create ./build/Development-19/lib/armeabi/libpayload.so
+Create ./build/Development-19/lib/armeabi/gdbserver
+Create ./build/Development-19/lib/armeabi/gdb.setup
+Create ./build/Development-19/AndroidManifest.xml
+Create ./build/Development-19/classes/com/yourcompany/hello/MainActivity.class
+Create ./build/Development-19/classes.dex
+Create ./build/Development-19/Hello.apk
+  Sign ./build/Development-19/Hello.apk
+ Align ./build/Development-19/Hello.apk
+</code></pre>
+
+<p>   Install ./build/Development-19/Hello.apk
+6102 KB/s (633859 bytes in 0.101s)</p>
+
+<pre><code> Start com.yourcompany.hello/.MainActivity
+</code></pre>
+
+<p>&mdash;&mdash;&mdash;&mdash;&ndash; beginning of /dev/log/main
+&mdash;&mdash;&mdash;&mdash;&ndash; beginning of /dev/log/system
+```</p>
+
+<p><img src="/images/rubymotion/rubymotion03.png" title="&lsquo;Hello World 01&rsquo; &lsquo;Hello World 01&rsquo;" ></p>
+
+<p>もし以下の様なエラーが表示されたら、期待した API バージョンに対してビルドされていない。</p>
+
+<p>```bash
+% rake device</p>
+
+<pre><code>ERROR! It looks like your version of the NDK does not support API level L. Switch to a lower API level or install a more recent NDK.
+</code></pre>
+
+<p>```</p>
+
+<p>先ほどの Hello ディレクトリ以下の Rakefile を任意のエディタで以下のように編集しよう。<br/>
+10行目がミソだ。</p>
+
+<p>```ruby
+% vim Rakefile</p>
+
+<h1>&ndash;<em>&ndash; coding: utf-8 &ndash;</em>&ndash;</h1>
+
+<p>$:.unshift(&ldquo;/Library/RubyMotionPre/lib&rdquo;)
+require &lsquo;motion/project/template/android&rsquo;</p>
+
+<p>Motion::Project::App.setup do |app|
+  # Use `rake config' to see complete project settings.
+  app.name = &lsquo;Hello&rsquo;
+  app.api_version = &lsquo;19&rsquo;
+end
+```</p>
+
+<p>もう一度 rake device してうまくいくか試す。</p>
+
+<p>以上で Hello World は終了である。ここまではそれほど難しくないはずだ。</p>
+
+<h3>はじめてのコントローラ</h3>
+
+<p>いよいよ自分でコードを書いていく。</p>
+
+<p><code>bash
+% app/main_activity.rb
+</code></p>
+
+<p>を任意のエディタで開き、以下のように編集してみよう。</p>
+
+<p>```ruby
+% vim app/main_activity.rb</p>
+
+<p>class MainActivity &lt; Android::App::Activity
+  def onCreate(savedInstanceState)</p>
+
+<pre><code>super
+text_view = Android::Widget::TextView.new(self)
+text_view.text = 'Hello RubyMotion!'
+self.contentView = text_view
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>保存して rake device すると以下のような画面が表示されるはずだ。</p>
+
+<p><img src="/images/rubymotion/rubymotion04.png" title="&lsquo;Hello World 02&rsquo; &lsquo;Hello World 02&rsquo;" ></p>
+
+<p>コードの内容は簡単で、</p>
+
+<ol>
+<li>6行目で TextView のインスタンスを生成し</li>
+<li>7行目で文字列を設定し</li>
+<li>8行目でそれをこの Activity にセットしている</li>
+</ol>
+
+
+<p>というわけである。なんだか Android 1.5 の頃によく見た入門サイトのようなコードだ。</p>
+
+<p>後で少し補足するが、<strong>RubyMotion for Android はこれ以上でも以下でもない。</strong><br/>
+一旦次に読み進めて欲しい。</p>
+
+<h3>素晴らしき REPL</h3>
+
+<p>RubyMotion には素晴らしい REPL ※6 が備わっている。<br/>
+先ほどのコードを次のように変更してみよう。</p>
+
+<p>```ruby
+% vim app/main_activity.rb</p>
+
+<p>class MainActivity &lt; Android::App::Activity
+  def onCreate(savedInstanceState)</p>
+
+<pre><code>super
+text_view = Android::Widget::TextView.new(self)
+text_view.text = 'Hello RubyMotion!'
+text_view.textSize = 10
+text_view.setId 12345
+self.contentView = text_view
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<ol>
+<li>8行目でテキストサイズを指定し</li>
+<li>9行目で View に対して一意な ID を割り振っている</li>
+</ol>
+
+
+<p>再び実行するが、今度はコンソールで</p>
+
+<ol>
+<li><code>text = self.findViewById 12345</code></li>
+<li><code>text.setTextSize 100</code></li>
+</ol>
+
+
+<p>のように入力してみよう。</p>
+
+<p>```bash
+% rake device</p>
+
+<blockquote><blockquote><p>text = self.findViewById 12345
+=> #&lt;android.widget.TextView:0x50600025>
+text.setTextSize 100
+=> #&lt;android.widget.TextView:0x50800025></p>
+
+<p>```</p></blockquote></blockquote>
+
+<p><img src="/images/rubymotion/rubymotion05.png" title="&lsquo;Hello World 03&rsquo; &lsquo;Hello World 03&rsquo;" ></p>
+
+<p>なんと、対話的に TextView オブジェクトを取り出し、あまつさえ値をセットしなおして即座に端末に反映されてしまった！</p>
+
+<p><strong>SUPER COOOOOOOOOOL!!!</strong></p>
+
+<p>一旦これだけのために RubyMotion を使ってみて欲しいぐらいだ。マジで。</p>
+
+<h3>更に踏み込んでいく</h3>
+
+<p>実際のところ、これだけでは実用的なアプリではない。</p>
+
+<ol>
+<li>現実問題、レイアウトをコードで指定することは実際の Android 開発現場ではほとんどありえない</li>
+<li>外部ライブラリどうやって使うの？</li>
+<li>リソースどこで指定するの？</li>
+</ol>
+
+
+<p>などなど問題は山積みである。</p>
+
+<p>幸い、RubyKaigi で開発者の方と直接お話しをする機会があり、世の中に数多存在するネイティブ Java で書かれたライブラリたちは RubyMotion で使えないのか質問したところ「使える」という回答をもらっており、やり方もざっくりお聞きしてある。</p>
+
+<p>その辺り、どんどん踏み込んで行きたいのだが、いい加減エントリも長くなってきたので別エントリを立てて解説したいと思う。</p>
+
+<p>RubyMotion for Android はまだドキュメントも満足に揃っていないので、この辺りを自分で調べるのは少々骨が折れるのだが、幸い GitHub に <a href="https://github.com/HipByte/RubyMotionSamples" title="RubyMotion Samples">サンプルプロジェクト</a> を上げてくれているので、興味のある人は是非 clone して実行してみて欲しい。</p>
+
+<h3>RubyMotion for Android は世界を救うか</h3>
+
+<p>というわけで、本エントリはまとめに入るが、RubyMotion はネイティブ開発の銀の弾丸になるだろうか？</p>
+
+<p>答えはもちろんノーだ。</p>
+
+<p>先ほどのコントローラのコードを思い出して欲しい。<br/>
+あのコードは、Ruby を生まれてこの方みたことなくても Android 開発経験があれば読める。<br/>
+逆に言えば、Rubyist でも Android 未経験であればあのコードは（全く理解不能ということはないだろうが）良くわからないはずだ。</p>
+
+<p><strong>RubyMotion はそれさえあれば Android/iOS のことを何も知らなくてもアプリを開発できるものでは全くない。</strong></p>
+
+<p>ライフライクル、イベントハンドリング、非同期処理などなど、OS のフレームワークをもろに意識したコードを書く必要がある。結局はネイティブ開発の知識なしには絶対に成り立たない。</p>
+
+<p>しかしながら、それがどうした？とも言いたい。</p>
+
+<ul>
+<li>OS と密接に関わる部分以外は柔軟で記述性の高い Ruby で書ける</li>
+<li>そのような部分は Android/iOS で共通のライブラリとして実装可能</li>
+<li><strong>Ruby で書くと楽しい！</strong></li>
+</ul>
+
+
+<p>僕はこれらの現実を踏まえた上で、それでも RubyMotion が痛く気に入った。同じように感じる人が RubyMotion を触ってみるきっかけになれば幸いである。</p>
+
+<p>以下、補足。</p>
+
+<h3>RubyMotion 補足</h3>
+
+<p>ライセンスが有効なうちは以下のコマンドで定期的に RubyMotion をアップデートしよう。開発はかなり活発なようだ。</p>
+
+<p><code>bash
+% sudo motion update
+</code></p>
+
+<p>バージョンは以下で確認することができる。</p>
+
+<p><code>bash
+% motion --version
+2.24
+</code></p>
+
+<p>バージョンは一日に一回サーバと通信してチェックしているとのことで、ライセンス失効が近付くとコマンドラインで教えてくれる。必要に応じて更新すると良いだろう。</p>
+
+<p>その他、サポートが必要な場合は以下のコマンドでブラウザのサポートページへ移動できる。ライセンスが有効な間は自分でチケットを作成して対応してもらうことも可能なはずだ。</p>
+
+<p><code>bash
+% motion support
+</code></p>
+
+<p>それでは良い RubyMotion ライフを。</p>
+
+<hr />
+
+<h5>注釈</h5>
+
+<p>※1 Android の場合、ランタイムは Dalvik でも ART でもちゃんと動く。<del>詳しくはよく分かってないのだが、Dalvik 環境下では Ruby のコードから DEX を、ART 環境下では LLVM が解釈できるコードをそれぞれ直接吐き出しているのだろうか？詳しい方教えてください。</del></p>
+
+<p>（9/24 追記）</p>
+
+<p>ART ランタイムについて勘違いしていたが、ART はインストール時に dex を端末内でコンパイルするものなので RubyMotion がどうこうとはあまり関係ないかも、と教えていただいた。ありがとうございます！</p>
+
+<p>ちなみに <a href="http://blog.rubymotion.com/post/87048665656/rubymotion-3-0-sneak-peek-android-support" title="RubyMotion 3.0 Sneak Peek: Android Support">公式ブログ</a> を読んでいたら、<strong>RubyMotion for Android では Ruby のコードを LLVM ベースの静的コンパイラで直接 ARM のマシン語に変換し、ランタイムは JNI 越しにそれらのコードにアクセスして実行される</strong>のだと解説してあった。素晴らしい。</p>
+
+<p>（追記ここまで）</p>
+
+<p>※2 JDK 7 だと署名時のコマンドライン引数が変わっていて普通に adb install しようとしても入らない端末(or version?) がある。<a href="http://java.dzone.com/articles/android-solution-install-parse-1">このへん</a> 参照。</p>
+
+<p>※3 良くわからない人は <a href="http://techfun.cc/android/mac-android-sdk-install.html" title="Android環境構築(Mac版) Android SDK インストール">このへん</a> とか見ればいいかも知れません。</p>
+
+<p>※4 良くわからない人は API 10〜19 ぐらいまで全部入れておけば良いです。時間とストレージの無駄ではありますが分からずに悩むよりはマシです。</p>
+
+<p>※5 以下のコマンドを実行して何も表示されないと、開発端末として認識されていない。再度説明を読み直して USB デバッグが有効になっているか確認し、それでもダメならケーブルが「充電専用」とかでないことを確認してみよう。意外と良くあるミス。</p>
+
+<p><code>bash
+% ./sdk/platform-tools/adb devices
+List of devices attached
+0301044a08e4ae97    device
+</code></p>
+
+<p>※6 Read Eval Print Loop のこと。その名のごとく、書いたコードを対話的に逐次評価して表示してくれるツール。 個人的に REPL を提供しない言語はクソ言語認定している。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Android エンジニアが DeployGate を知らないのは恥と心得よ]]></title>
+    <link href="http://blog.shiroyama.us/blog/2014/03/18/deploygate/"/>
+    <updated>2014-03-18T23:43:44+09:00</updated>
+    <id>http://blog.shiroyama.us/blog/2014/03/18/deploygate</id>
+    <content type="html"><![CDATA[<p><a href="https://deploygate.com/?locale=ja" title="DeployGate">DeployGate</a> は Android 開発においてもはや欠かすことが出来ない。<br/>
+ところが未だに DeployGate を使っていない Android エンジニアを非常に多く見かける。<br/>
+これは、デザイナが Photoshop を知らないに等しい勿体なさである。</p>
+
+<h3>DeployGate とは何か</h3>
+
+<p>DeployGate とは Android の apk を爆速でテスト配布するためのサービスである。</p>
+
+<p><img src="/images/deploygate/deploygate01.jpg" title="&lsquo;deploygate preview&rsquo; &lsquo;deploygate preview&rsquo;" ></p>
+
+<p>最初に申し上げておきたいのが、DeployGate は <strong> <a href="https://play.google.com/apps/publish/">Google Play Developer Console</a> のアルファ配布／ベータ配布とは目的が異なる。</strong><br/>
+そしてこれも断言しておきたいが、多くの Android 開発者に必要なのは DeployGate の方である。 順番に見て行きたいと思う。</p>
+
+<p>後半では DeployGate の使い方も実際に解説してあるので是非参考にしていただきたい。</p>
+
+<h3>テスト配布とは何か</h3>
+
+<p>テスト配布と言っても大きく2種類あると考えている。</p>
+
+<ol>
+<li>開発中のアプリをチームメンバーやプロダクトオーナーに素早く配布し触ってもらう。部分的に確認してもらうだけなので未実装部分があっても問題ない。</li>
+<li>もうほとんど完成形のアプリを一部の想定カスタマーに実際に使ってもらって本リリース前の最後の微調整をする。</li>
+</ol>
+
+
+<p>端的に言うと、前者に対応するのが DeplyGate であり、後者に対応するのが Developer Console である。</p>
+
+<h3>Developer Console のベータ配布ではダメなのか</h3>
+
+<p>Google 謹製の Developer Console を使ったアルファ／ベータ配布で何がダメなのだろうか？<br/>
+その理由は一度でも Developer Console でテスト配布したことのある人は痛いほどご存知のはずだ。</p>
+
+<h4>1. 用意するものが多すぎる</h4>
+
+<p>Developer Console でベータ配布するには本番アプリとまったく同じ準備が必要である。<br/>
+アプリアイコンが1つ、スクリーンショットが1つ、プロモーション用の画像もたしか2枚、説明文、公開範囲等々…<br/>
+詳しくは当該サイトを参照して欲しいが、ちょっと同僚に試してもらうには準備が大げさすぎる。</p>
+
+<h4>2. 配布されるまでに時間が掛かり過ぎる</h4>
+
+<p>Developer Console でのベータ配布は本番アプリのストア配布と公開範囲を除いては何ら変わりがない。<br/>
+従って apk ファイルをアップロードしてから Google の CDN に載り、実際にダウンロード出来るようになるまでゆうに3時間は掛かる。<br/>
+もし何かミスがあれば apk ファイルを上げ直し、また3時間待つハメになるのだ。とてもやっていられない。</p>
+
+<h4>3. バージョン番号を上げないとアップロードし直せない</h4>
+
+<p>Developer Console で修正した apk をアップロードするには、Android が内部で持っている <em>versionCode</em> を上げてやらねばならない。<br/>
+本来はアプリの純然たる識別子としてのバージョンコードが、配布ミスや漏れのたびに数字が上がっていくという残念な状況になるのだ。</p>
+
+<p>これらはすべて、ベータ配布が悪いというわけではなく、前述のとおり思想の違いである。<strong>開発サイクルを短く回すためにベータ配布を使うのがそもそも使い方として間違っている</strong>のだ。</p>
+
+<h3>そこで DeployGate である</h3>
+
+<p>DeployGate では以下の様なことが出来る。</p>
+
+<ul>
+<li>配布したいメンバーを追加し30秒で apk 配布。難しい操作なし！</li>
+<li>vesionCode 上げる必要なし！新しい apk を何も考えずにアップロードすると新しいビルドとしてすぐさま配布される</li>
+<li>テスト配布のバージョンアップが一瞬でプッシュ通知されてくるのでどこに居ても見逃さない</li>
+<li>簡単に組み込める SDK を開発者が仕込んでおくと、<strong>配布先のメンバーのクラッシュレポートが自動的に送られてくる！</strong></li>
+<li>Jenkins 等の CI ツールとの連携が容易</li>
+<li>便利なコマンドラインツール群</li>
+<li><strong>無料で使える</strong>（有料プランとの違いは後述）</li>
+</ul>
+
+
+<p>DeployGate では小難しい操作や七面倒臭い準備は何一つ必要ない。<br/>
+誰にでもすぐに使い始められる。</p>
+
+<p>DeployGate はユーザ体験も非常に良いので、チーム内の開発サイクルを速めるのみならず、実際にリリース直前のお客さんに触ってもらう時も実にスムーズだ。<br/>
+今まで使ってなかったなんて本当にもったいない！</p>
+
+<h3>DeployGate を使ってみよう</h3>
+
+<p>早速 DeployGate を使ってみよう。もちろん無料だ。<br/>
+<a href="https://deploygate.com/?locale=ja">https://deploygate.com/?locale=ja</a> にアクセスして「無料で試してみる」をクリックする。</p>
+
+<p><img src="/images/deploygate/deploygate02.jpg" title="&lsquo;deploygate sign-up&rsquo; &lsquo;deploygate sign-up&rsquo;" ></p>
+
+<p>サインアップは30秒で終わる。<br/>
+望むならば GitHub アカウント等を使っても良い。</p>
+
+<p><img src="/images/deploygate/deploygate03.jpg" title="&lsquo;deploygate sign-up 02&rsquo; &lsquo;deploygate sign-up 02&rsquo;" ></p>
+
+<p>早速 apk ファイルをアップロードしてみよう。<br/>
+「アップロード」ボタンを押して apk ファイルの場所を指定するだけだ。</p>
+
+<p><img src="/images/deploygate/deploygate04.jpg" title="&lsquo;deploygate upload&rsquo; &lsquo;deploygate upload&rsquo;" ></p>
+
+<p>このバージョンの説明を簡単に記入し「アップロード」ボタンをクリック。</p>
+
+<p><img src="/images/deploygate/deploygate05.jpg" title="&lsquo;deploygate upload 02&rsquo; &lsquo;deploygate upload 02&rsquo;" ></p>
+
+<p>アップロードが完了した。<br/>
+驚くべきことに、すぐさま読み取れる QR コードと、メールで共有したり出来る静的なリンクが生成されている。</p>
+
+<p><img src="/images/deploygate/deploygate06.jpg" title="&lsquo;deploygate upload complete&rsquo; &lsquo;deploygate upload complete&rsquo;" ></p>
+
+<h3>DeployGate から apk をインストールしてみよう</h3>
+
+<p>では早速 apk をインストールしてみよう。<br/>
+まずは Play ストアから DeployGate をインストールする。</p>
+
+<p><img src="/images/deploygate/deploygate07.jpg" title="&lsquo;install deploygate&rsquo; &lsquo;install deploygate&rsquo;" ></p>
+
+<p>DeployGate を起動しよう。<br/>
+ここでは試しに先ほどの画面の QR コードを読み取って見るとしよう。</p>
+
+<p><img src="/images/deploygate/deploygate08.jpg" title="&lsquo;deploygate QR code&rsquo; &lsquo;deploygate QR code&rsquo;" ></p>
+
+<p>QR コードリーダーが立ち上がり、先ほどの画面にかざすだけでアプリの情報を取得できる。</p>
+
+<p><img src="/images/deploygate/deploygate09.jpg" title="&lsquo;deploygate QR code 02&rsquo; &lsquo;deploygate QR code 02&rsquo;" ></p>
+
+<p>アカウントがなければここからも登録できるし、ログインも出来る。</p>
+
+<p><img src="/images/deploygate/deploygate10.jpg" title="&lsquo;deploygate login&rsquo; &lsquo;deploygate login&rsquo;" ></p>
+
+<p>自分のアカウントでログインしよう。</p>
+
+<p><img src="/images/deploygate/deploygate11.jpg" title="&lsquo;deploygate login 02&rsquo; &lsquo;deploygate login 02&rsquo;" ></p>
+
+<p>アプリが表示された！<br/>
+「インストール」をクリックしてインストールしてみよう。<br/>
+以下、インストール完了まで一本道なので補足は省略する。</p>
+
+<p><img src="/images/deploygate/deploygate12.jpg" title="&lsquo;deploygate install 01&rsquo; &lsquo;deploygate install 01&rsquo;" >
+<img src="/images/deploygate/deploygate13.jpg" title="&lsquo;deploygate install 02&rsquo; &lsquo;deploygate install 02&rsquo;" >
+<img src="/images/deploygate/deploygate14.jpg" title="&lsquo;deploygate install 03&rsquo; &lsquo;deploygate install 03&rsquo;" >
+<img src="/images/deploygate/deploygate15.jpg" title="&lsquo;deploygate install 04&rsquo; &lsquo;deploygate install 04&rsquo;" >
+<img src="/images/deploygate/deploygate16.jpg" title="&lsquo;deploygate install 05&rsquo; &lsquo;deploygate install 05&rsquo;" >
+<img src="/images/deploygate/deploygate17.jpg" title="&lsquo;deploygate install 06&rsquo; &lsquo;deploygate install 06&rsquo;" ></p>
+
+<p>見事インストールされた！</p>
+
+<p>もしかしたら開発中のアプリは「設定」から「提供元不明のアプリ」にチェックを入れないとインストールできないかもしれないが、Android 開発者の皆さんには釈迦に説法だろう。</p>
+
+<p><img src="/images/deploygate/deploygate18.jpg" title="&lsquo;deploygate unknown app&rsquo; &lsquo;deploygate unknown app&rsquo;" ></p>
+
+<h3>apk を更新してみよう</h3>
+
+<p>Android アプリに修正を加え、新しいバージョンをテスト配布してみよう。</p>
+
+<p>これまでと同じように DeployGate のログイン後画面から最新の apk をアップロードする。</p>
+
+<p><img src="/images/deploygate/deploygate19.jpg" title="&lsquo;deploygate update app&rsquo; &lsquo;deploygate update app&rsquo;" ></p>
+
+<p>アップロードすると即座に更新がプッシュ通知される。</p>
+
+<p><img src="/images/deploygate/deploygate20.jpg" title="&lsquo;deploygate push notification&rsquo; &lsquo;deploygate push notification&rsquo;" ></p>
+
+<p>更新ボタンを押すだけで最新の配布を試すことが出来る。</p>
+
+<p><img src="/images/deploygate/deploygate21.jpg" title="&lsquo;deploygate update app 02&rsquo; &lsquo;deploygate update app 02&rsquo;" ></p>
+
+<p>すぐさま新機能の更新を確認することが出来た！なんと簡単なのか！</p>
+
+<p><img src="/images/deploygate/deploygate22.jpg" title="&lsquo;deploygate update app 03&rsquo; &lsquo;deploygate update app 03&rsquo;" ></p>
+
+<h3>開発者やテスタを追加しよう</h3>
+
+<p>自分以外の開発者やテスターの方ににテスト配布してみよう。これもとても簡単だ。</p>
+
+<p>招待したい人のメールアドレスを入力し、開発者かテスタか選ぶ。<br/>
+開発者として追加した場合には今自分がやっているのと同等の権限がメンバに与えられる。<br/>
+テスタとして追加した場合にはアプリのテストのみが行える。</p>
+
+<p><img src="/images/deploygate/deploygate23.jpg" title="&lsquo;deploygate test distribution 01&rsquo; &lsquo;deploygate test distribution 01&rsquo;" ></p>
+
+<p>招待されるとメールが届くのでリンクをクリックする。</p>
+
+<p><img src="/images/deploygate/deploygate24.jpg" title="&lsquo;deploygate test distribution 02&rsquo; &lsquo;deploygate test distribution 02&rsquo;" ></p>
+
+<p>メンバとして追加された！後はこれまでに見てきたのと同じようにテスト配布を受け取ることができる！説明の必要がないほど直感的で簡単である。</p>
+
+<p><img src="/images/deploygate/deploygate25.jpg" title="&lsquo;deploygate test distribution 03&rsquo; &lsquo;deploygate test distribution 03&rsquo;" ></p>
+
+<h3>まとめ</h3>
+
+<p>以上が DeployGate の最も基本的な使い方である。<br/>
+DeployGate がどれだけ簡単でどれほど Android 開発に必要不可欠かお分かりいただけたと思う。</p>
+
+<p>次エントリでは、Android アプリに DeployGate SDK を組み込んで、リモートからクラッシュレポートを収集する方法等を解説したい。</p>
+]]></content>
+  </entry>
+  
+</feed>

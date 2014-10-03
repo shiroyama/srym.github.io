@@ -1,0 +1,519 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Android エンジニアが DeployGate を知らないのは恥と心得よ - 白山軟件有限公司</title>
+  <meta name="author" content="Fumihiko Shiroyama">
+  <link rel="author" href="humans.txt">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  
+    
+  
+  <meta name="description" content="DeployGate は Android 開発においてもはや欠かすことが出来ない。
+ところが未だに DeployGate を使っていない Android エンジニアを非常に多く見かける。
+これは、デザイナが Photoshop を知らないに等しい勿体なさである。 DeployGate とは何か &hellip;">
+  
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.shiroyama.us/blog/2014/03/18/deploygate/">
+  <link href="/favicon.png" rel="icon">
+  <link href='http://fonts.googleapis.com/css?family=Cantarell' rel='stylesheet' type='text/css'>
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="白山軟件有限公司" type="application/atom+xml">
+  <meta name="og:type" content="website" />
+  <meta name="og:site_name" content="白山軟件有限公司" />
+  <meta name="og:title" content="Android エンジニアが DeployGate を知らないのは恥と心得よ" />
+  <meta name="og:description" content="DeployGate は Android 開発においてもはや欠かすことが出来ない。
+ところが未だに DeployGate を使っていない Android エンジニアを非常に多く見かける。
+これは、デザイナが Photoshop を知らないに等しい勿体なさである。 DeployGate とは何か &hellip;" />
+  <meta name="og:url" content="http://blog.shiroyama.us/blog/2014/03/18/deploygate/"/>
+  <meta name="url" content="http://blog.shiroyama.us/blog/2014/03/18/deploygate/">
+  
+  <meta name="subject" content="AndroidDeployGate"/>
+  <meta name="category" content="AndroidDeployGate"/>
+  
+  <meta name="distribution" content="global">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-22050152-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <nav role="navigation"><div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="/">白山軟件有限公司</a>
+    <ul class="nav">
+      <li><a href="/">Home</a></li>
+      <li><a href="/blog/archives">Archives</a></li>
+    </ul>
+    <ul class="nav" data-subscription="rss">
+      <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+      
+    </ul>
+      
+    <form class="navbar-form" action="http://google.com/search" method="get">
+      <fieldset role="search">
+        <input type="hidden" name="q" value="site:blog.shiroyama.us" />
+        <input class="span2" type="text" name="q" results="0" placeholder="Search"/>
+      </fieldset>
+    </form>
+      
+    
+  </div>
+</div>
+</nav>
+  <div class="wrapper_single">
+    <div class="container">
+      <article class="span8 offset2" role="article">
+        <div class="article-format">
+
+  <header>
+    
+      <h1 class="entry-title">Android エンジニアが DeployGate を知らないのは恥と心得よ</h1>
+    
+    
+      <p class="meta">
+        
+  
+
+
+  
+    <span class="byline author vcard">by <a href="https://plus.google.com/+FumihikoShiroyama?rel=author"><span class="fn">Fumihiko Shiroyama</span></a></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-18T23:43:44+09:00" pubdate data-updated="true">Mar 18<span>th</span>, 2014</time> - 
+        
+
+posted in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/android/'>Android</a>, <a class='category' href='/blog/categories/deploygate/'>DeployGate</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="https://deploygate.com/?locale=ja" title="DeployGate">DeployGate</a> は Android 開発においてもはや欠かすことが出来ない。<br/>
+ところが未だに DeployGate を使っていない Android エンジニアを非常に多く見かける。<br/>
+これは、デザイナが Photoshop を知らないに等しい勿体なさである。</p>
+
+<h3>DeployGate とは何か</h3>
+
+<p>DeployGate とは Android の apk を爆速でテスト配布するためのサービスである。</p>
+
+<p><img src="/images/deploygate/deploygate01.jpg" title="deploygate preview" alt="deploygate preview"></p>
+
+<p>最初に申し上げておきたいのが、DeployGate は <strong> <a href="https://play.google.com/apps/publish/">Google Play Developer Console</a> のアルファ配布／ベータ配布とは目的が異なる。</strong><br/>
+そしてこれも断言しておきたいが、多くの Android 開発者に必要なのは DeployGate の方である。 順番に見て行きたいと思う。</p>
+
+<p>後半では DeployGate の使い方も実際に解説してあるので是非参考にしていただきたい。</p>
+
+<h3>テスト配布とは何か</h3>
+
+<p>テスト配布と言っても大きく2種類あると考えている。</p>
+
+<ol>
+<li>開発中のアプリをチームメンバーやプロダクトオーナーに素早く配布し触ってもらう。部分的に確認してもらうだけなので未実装部分があっても問題ない。</li>
+<li>もうほとんど完成形のアプリを一部の想定カスタマーに実際に使ってもらって本リリース前の最後の微調整をする。</li>
+</ol>
+
+
+<p>端的に言うと、前者に対応するのが DeplyGate であり、後者に対応するのが Developer Console である。</p>
+
+<h3>Developer Console のベータ配布ではダメなのか</h3>
+
+<p>Google 謹製の Developer Console を使ったアルファ／ベータ配布で何がダメなのだろうか？<br/>
+その理由は一度でも Developer Console でテスト配布したことのある人は痛いほどご存知のはずだ。</p>
+
+<h4>1. 用意するものが多すぎる</h4>
+
+<p>Developer Console でベータ配布するには本番アプリとまったく同じ準備が必要である。<br/>
+アプリアイコンが1つ、スクリーンショットが1つ、プロモーション用の画像もたしか2枚、説明文、公開範囲等々…<br/>
+詳しくは当該サイトを参照して欲しいが、ちょっと同僚に試してもらうには準備が大げさすぎる。</p>
+
+<h4>2. 配布されるまでに時間が掛かり過ぎる</h4>
+
+<p>Developer Console でのベータ配布は本番アプリのストア配布と公開範囲を除いては何ら変わりがない。<br/>
+従って apk ファイルをアップロードしてから Google の CDN に載り、実際にダウンロード出来るようになるまでゆうに3時間は掛かる。<br/>
+もし何かミスがあれば apk ファイルを上げ直し、また3時間待つハメになるのだ。とてもやっていられない。</p>
+
+<h4>3. バージョン番号を上げないとアップロードし直せない</h4>
+
+<p>Developer Console で修正した apk をアップロードするには、Android が内部で持っている <em>versionCode</em> を上げてやらねばならない。<br/>
+本来はアプリの純然たる識別子としてのバージョンコードが、配布ミスや漏れのたびに数字が上がっていくという残念な状況になるのだ。</p>
+
+<p>これらはすべて、ベータ配布が悪いというわけではなく、前述のとおり思想の違いである。<strong>開発サイクルを短く回すためにベータ配布を使うのがそもそも使い方として間違っている</strong>のだ。</p>
+
+<h3>そこで DeployGate である</h3>
+
+<p>DeployGate では以下の様なことが出来る。</p>
+
+<ul>
+<li>配布したいメンバーを追加し30秒で apk 配布。難しい操作なし！</li>
+<li>vesionCode 上げる必要なし！新しい apk を何も考えずにアップロードすると新しいビルドとしてすぐさま配布される</li>
+<li>テスト配布のバージョンアップが一瞬でプッシュ通知されてくるのでどこに居ても見逃さない</li>
+<li>簡単に組み込める SDK を開発者が仕込んでおくと、<strong>配布先のメンバーのクラッシュレポートが自動的に送られてくる！</strong></li>
+<li>Jenkins 等の CI ツールとの連携が容易</li>
+<li>便利なコマンドラインツール群</li>
+<li><strong>無料で使える</strong>（有料プランとの違いは後述）</li>
+</ul>
+
+
+<p>DeployGate では小難しい操作や七面倒臭い準備は何一つ必要ない。<br/>
+誰にでもすぐに使い始められる。</p>
+
+<p>DeployGate はユーザ体験も非常に良いので、チーム内の開発サイクルを速めるのみならず、実際にリリース直前のお客さんに触ってもらう時も実にスムーズだ。<br/>
+今まで使ってなかったなんて本当にもったいない！</p>
+
+<h3>DeployGate を使ってみよう</h3>
+
+<p>早速 DeployGate を使ってみよう。もちろん無料だ。<br/>
+<a href="https://deploygate.com/?locale=ja">https://deploygate.com/?locale=ja</a> にアクセスして「無料で試してみる」をクリックする。</p>
+
+<p><img src="/images/deploygate/deploygate02.jpg" title="deploygate sign-up" alt="deploygate sign-up"></p>
+
+<p>サインアップは30秒で終わる。<br/>
+望むならば GitHub アカウント等を使っても良い。</p>
+
+<p><img src="/images/deploygate/deploygate03.jpg" title="deploygate sign-up 02" alt="deploygate sign-up 02"></p>
+
+<p>早速 apk ファイルをアップロードしてみよう。<br/>
+「アップロード」ボタンを押して apk ファイルの場所を指定するだけだ。</p>
+
+<p><img src="/images/deploygate/deploygate04.jpg" title="deploygate upload" alt="deploygate upload"></p>
+
+<p>このバージョンの説明を簡単に記入し「アップロード」ボタンをクリック。</p>
+
+<p><img src="/images/deploygate/deploygate05.jpg" title="deploygate upload 02" alt="deploygate upload 02"></p>
+
+<p>アップロードが完了した。<br/>
+驚くべきことに、すぐさま読み取れる QR コードと、メールで共有したり出来る静的なリンクが生成されている。</p>
+
+<p><img src="/images/deploygate/deploygate06.jpg" title="deploygate upload complete" alt="deploygate upload complete"></p>
+
+<h3>DeployGate から apk をインストールしてみよう</h3>
+
+<p>では早速 apk をインストールしてみよう。<br/>
+まずは Play ストアから DeployGate をインストールする。</p>
+
+<p><img src="/images/deploygate/deploygate07.jpg" title="install deploygate" alt="install deploygate"></p>
+
+<p>DeployGate を起動しよう。<br/>
+ここでは試しに先ほどの画面の QR コードを読み取って見るとしよう。</p>
+
+<p><img src="/images/deploygate/deploygate08.jpg" title="deploygate QR code" alt="deploygate QR code"></p>
+
+<p>QR コードリーダーが立ち上がり、先ほどの画面にかざすだけでアプリの情報を取得できる。</p>
+
+<p><img src="/images/deploygate/deploygate09.jpg" title="deploygate QR code 02" alt="deploygate QR code 02"></p>
+
+<p>アカウントがなければここからも登録できるし、ログインも出来る。</p>
+
+<p><img src="/images/deploygate/deploygate10.jpg" title="deploygate login" alt="deploygate login"></p>
+
+<p>自分のアカウントでログインしよう。</p>
+
+<p><img src="/images/deploygate/deploygate11.jpg" title="deploygate login 02" alt="deploygate login 02"></p>
+
+<p>アプリが表示された！<br/>
+「インストール」をクリックしてインストールしてみよう。<br/>
+以下、インストール完了まで一本道なので補足は省略する。</p>
+
+<p><img src="/images/deploygate/deploygate12.jpg" title="deploygate install 01" alt="deploygate install 01">
+<img src="/images/deploygate/deploygate13.jpg" title="deploygate install 02" alt="deploygate install 02">
+<img src="/images/deploygate/deploygate14.jpg" title="deploygate install 03" alt="deploygate install 03">
+<img src="/images/deploygate/deploygate15.jpg" title="deploygate install 04" alt="deploygate install 04">
+<img src="/images/deploygate/deploygate16.jpg" title="deploygate install 05" alt="deploygate install 05">
+<img src="/images/deploygate/deploygate17.jpg" title="deploygate install 06" alt="deploygate install 06"></p>
+
+<p>見事インストールされた！</p>
+
+<p>もしかしたら開発中のアプリは「設定」から「提供元不明のアプリ」にチェックを入れないとインストールできないかもしれないが、Android 開発者の皆さんには釈迦に説法だろう。</p>
+
+<p><img src="/images/deploygate/deploygate18.jpg" title="deploygate unknown app" alt="deploygate unknown app"></p>
+
+<h3>apk を更新してみよう</h3>
+
+<p>Android アプリに修正を加え、新しいバージョンをテスト配布してみよう。</p>
+
+<p>これまでと同じように DeployGate のログイン後画面から最新の apk をアップロードする。</p>
+
+<p><img src="/images/deploygate/deploygate19.jpg" title="deploygate update app" alt="deploygate update app"></p>
+
+<p>アップロードすると即座に更新がプッシュ通知される。</p>
+
+<p><img src="/images/deploygate/deploygate20.jpg" title="deploygate push notification" alt="deploygate push notification"></p>
+
+<p>更新ボタンを押すだけで最新の配布を試すことが出来る。</p>
+
+<p><img src="/images/deploygate/deploygate21.jpg" title="deploygate update app 02" alt="deploygate update app 02"></p>
+
+<p>すぐさま新機能の更新を確認することが出来た！なんと簡単なのか！</p>
+
+<p><img src="/images/deploygate/deploygate22.jpg" title="deploygate update app 03" alt="deploygate update app 03"></p>
+
+<h3>開発者やテスタを追加しよう</h3>
+
+<p>自分以外の開発者やテスターの方ににテスト配布してみよう。これもとても簡単だ。</p>
+
+<p>招待したい人のメールアドレスを入力し、開発者かテスタか選ぶ。<br/>
+開発者として追加した場合には今自分がやっているのと同等の権限がメンバに与えられる。<br/>
+テスタとして追加した場合にはアプリのテストのみが行える。</p>
+
+<p><img src="/images/deploygate/deploygate23.jpg" title="deploygate test distribution 01" alt="deploygate test distribution 01"></p>
+
+<p>招待されるとメールが届くのでリンクをクリックする。</p>
+
+<p><img src="/images/deploygate/deploygate24.jpg" title="deploygate test distribution 02" alt="deploygate test distribution 02"></p>
+
+<p>メンバとして追加された！後はこれまでに見てきたのと同じようにテスト配布を受け取ることができる！説明の必要がないほど直感的で簡単である。</p>
+
+<p><img src="/images/deploygate/deploygate25.jpg" title="deploygate test distribution 03" alt="deploygate test distribution 03"></p>
+
+<h3>まとめ</h3>
+
+<p>以上が DeployGate の最も基本的な使い方である。<br/>
+DeployGate がどれだけ簡単でどれほど Android 開発に必要不可欠かお分かりいただけたと思う。</p>
+
+<p>次エントリでは、Android アプリに DeployGate SDK を組み込んで、リモートからクラッシュレポートを収集する方法等を解説したい。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+
+  
+    <span class="byline author vcard">by <a href="https://plus.google.com/+FumihikoShiroyama?rel=author"><span class="fn">Fumihiko Shiroyama</span></a></span>
+  
+
+ - 
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-18T23:43:44+09:00" pubdate data-updated="true">Mar 18<span>th</span>, 2014</time> - 
+      
+
+posted in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/android/'>Android</a>, <a class='category' href='/blog/categories/deploygate/'>DeployGate</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.shiroyama.us/blog/2014/03/18/deploygate/" data-via="fushiroyama" data-counturl="http://blog.shiroyama.us/blog/2014/03/18/deploygate/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    
+      <a class="pull-left" href="/blog/2014/02/26/octopress/" title="Previous Post: エンジニアのブログは Octopress が最適">&laquo; エンジニアのブログは Octopress が最適</a>
+    
+    
+      <a class="pull-right" href="/blog/2014/04/28/turned31/" title="Next Post: 恥ずかしながら31歳になりました">恥ずかしながら31歳になりました &raquo;</a>
+    
+  </footer>
+
+</div>
+
+        
+      </article>
+    </div>
+  </div>
+  <div id="footer-widgets">
+  <div class="container">
+    <div class="row">
+  <div class="span3">
+    <h2>recent posts</h2>
+    <ul class="recent_posts">
+      
+        <li>
+          <a href="/blog/2014/10/03/rubymotion-android-custom-application-class/">RubyMotion for Android でカスタム Appliation クラスを利用する</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2014/09/20/rubymotion-for-android/">RubyMotion for Android を使ってみる</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2014/04/28/turned31/">恥ずかしながら31歳になりました</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2014/03/18/deploygate/">Android エンジニアが DeployGate を知らないのは恥と心得よ</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2014/02/26/octopress/">エンジニアのブログは Octopress が最適</a>
+        </li>
+      
+    </ul>
+    <h2><a href="/blog/archives">archives</a></h2>
+  </div>
+  <div class="span3">
+    
+
+  </div>
+  <div class="span4">
+    
+<h2>twitter</h2>
+<a href="https://twitter.com/fushiroyama" class="twitter-follow-button" data-show-count="true" data-lang="en">Follow @fushiroyama</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<div class="tweet" data-twitter-user="fushiroyama">
+</div>
+
+
+  </div>
+  <div class="span2">
+    <h2>found on</h2>
+
+<a href="https://github.com/srym/" rel="tooltip" title="Github"><img class="social_icon" title="Github" alt="github icon" src="/images/glyphicons_381_github.png"></a>
+
+
+
+
+
+
+
+<a href="http://twitter.com/fushiroyama" rel="tooltip" title="Twitter"><img class="social_icon" title="Twitter" alt="Twitter icon" src="/images/glyphicons_391_twitter_t.png"></a>
+
+
+
+<a href="https://plus.google.com/+FumihikoShiroyama?rel=author" rel="tooltip" title="Google Plus"><img class="social_icon" title="Google Plus" alt="Google Plus icon" src="/images/glyphicons_386_google_plus.png"></a>
+
+
+
+
+
+
+  </div>
+</div>
+
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-left">
+  <a href="/">白山軟件有限公司</a>
+  - Copyright &copy; 2014 - Fumihiko Shiroyama
+</p>
+<p class="pull-right">
+  <span>Powered by <a href="http://octopress.org/">Octopress</a>.</span>
+  
+    <span>Designed by <a href="http://www.AdrianArtiles.com">Adrian Artiles</a>.</span>
+  
+</p>
+
+  </div>
+</footer>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+<script>window.jQuery || document.write('<script src="/javascripts/libs/jquery-1.7.2.min.js" type="text/javascript"><\/script>')</script>
+<script src="/javascripts/libs/bootstrap.min.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.tweet.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.instagram.js" type="text/javascript"></script>
+<script src="/javascripts/libs/jquery.masonry.min.js" type="text/javascript"></script>
+<script src="/javascripts/custom.js" type="text/javascript"></script>
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+</body>
+</html>

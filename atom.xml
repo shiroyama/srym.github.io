@@ -1,172 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
 
-
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <title>白山軟件有限公司</title>
-  <meta name="author" content="Fumihiko Shiroyama">
-  <link rel="author" href="humans.txt">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-  
+  <title><![CDATA[白山軟件有限公司]]></title>
+  <link href="http://blog.shiroyama.us/atom.xml" rel="self"/>
+  <link href="http://blog.shiroyama.us/"/>
+  <updated>2014-10-03T22:38:47+09:00</updated>
+  <id>http://blog.shiroyama.us/</id>
+  <author>
+    <name><![CDATA[Fumihiko Shiroyama]]></name>
     
-  
-  <meta name="description" content=" ">
-  
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
 
   
-  <link rel="canonical" href="http://blog.shiroyama.us/">
-  <link href="/favicon.png" rel="icon">
-  <link href='http://fonts.googleapis.com/css?family=Cantarell' rel='stylesheet' type='text/css'>
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="白山軟件有限公司" type="application/atom+xml">
-  <meta name="og:type" content="website" />
-  <meta name="og:site_name" content="白山軟件有限公司" />
-  <meta name="og:title" content="白山軟件有限公司" />
-  <meta name="og:description" content=" " />
-  <meta name="og:url" content="http://blog.shiroyama.us/index.html"/>
-  <meta name="url" content="http://blog.shiroyama.us/index.html">
-  
-  <meta name="distribution" content="global">
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-
-  
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-22050152-1']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-
-</head>
-
-<body   >
-  <div id="front-wrapper">
-  <div id="hero">
-    <div id="hero-inner" class="container">
-      <div class="span10 offset1">
-  <h1>
-    白山軟件有限公司
-  </h1>
-  <h2></h2>
-</div>
-
-    </div>
-  </div>
-  <section id="sub-hero">
-    <div class="container">
-      <div class="row">
-  <div class="span4">
-    <h2>about me</h2>
-<p>お父ちゃんプログラマ</p>
-
-  </div>
-  <div class="span6">
-    
-<h2>recent public projects</h2>
-<dl id="gh_repos" class="dl-horizontal" data-github-user="srym" data-github-repo-count="3" data-github-skip-forks="true">
-  <dd class="loading">Status updating&#8230;</dd>
-</dl>
-<script src="/javascripts/github.js" type="text/javascript"> </script>
-<script src="/javascripts/libs/jXHR.js" type="text/javascript"> </script>
-
-
-  </div>
-  <div class="span2">
-    <h2>found on</h2>
-
-<a href="https://github.com/srym/" rel="tooltip" title="Github"><img class="social_icon" title="Github" alt="github icon" src="/images/glyphicons_381_github.png"></a>
-
-
-
-
-
-
-
-<a href="http://twitter.com/fushiroyama" rel="tooltip" title="Twitter"><img class="social_icon" title="Twitter" alt="Twitter icon" src="/images/glyphicons_391_twitter_t.png"></a>
-
-
-
-<a href="https://plus.google.com/+FumihikoShiroyama?rel=author" rel="tooltip" title="Google Plus"><img class="social_icon" title="Google Plus" alt="Google Plus icon" src="/images/glyphicons_386_google_plus.png"></a>
-
-
-
-
-
-
-  </div>
-</div>
-
-    </div>
-  </section>
-  <div class="container">
-    <div class="row" id="post-container">
-    
-    
-    
-      <article class="span4">
-        <div class="article-format">
-
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/10/03/rubymotion-android-custom-application-class/">RubyMotion for Android でカスタム Appliation クラスを利用する</a></h1>
-    
-    
-      <p class="meta">
-        
-  
-
-
-  
-    <span class="byline author vcard">by <a href="https://plus.google.com/+FumihikoShiroyama?rel=author"><span class="fn">Fumihiko Shiroyama</span></a></span>
-  
-
- - 
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-10-03T21:16:29+09:00" pubdate data-updated="true">Oct 3<span>rd</span>, 2014</time> - 
-        
-
-posted in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/android/'>Android</a>, <a class='category' href='/blog/categories/rubymotion/'>RubyMotion</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.rubymotion.com/" title="RubyMotion">RubyMotion</a> のバージョンが 3.1 になり、Android 版でカスタム Application クラスが利用できるようになった。</p>
+  <entry>
+    <title type="html"><![CDATA[RubyMotion for Android でカスタム Appliation クラスを利用する]]></title>
+    <link href="http://blog.shiroyama.us/blog/2014/10/03/rubymotion-android-custom-application-class/"/>
+    <updated>2014-10-03T21:16:29+09:00</updated>
+    <id>http://blog.shiroyama.us/blog/2014/10/03/rubymotion-android-custom-application-class</id>
+    <content type="html"><![CDATA[<p><a href="http://www.rubymotion.com/" title="RubyMotion">RubyMotion</a> のバージョンが 3.1 になり、Android 版でカスタム Application クラスが利用できるようになった。</p>
 
 <p>実を言うとこれまでは独自定義の Android クラスを利用することが出来なかったのだが、その旨 RubyMotion のサポートで質問したところ、作者の Laurent さんが一瞬で対応してくれたのだ。<strong>なんてCOOLなんだ！みんなも RubyMotion を買おう！</strong></p>
 
@@ -384,64 +236,15 @@ posted in
 ライブラリの初期化とか、静的 Context 取得メソッドとか、アプリケーションライフサイクルで管理する Observer とか、実際の Android 開発では利用シーンに枚挙にいとまがない。</p>
 
 <p>いよいよ次回は少し実戦的なアプリを実装して GitHub に上げてその記事を書こうと思う。それでは楽しい RubyMotion ライフを！</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-</div>
-
-      </article>
-    
-    
-      <article class="span4">
-        <div class="article-format">
-
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/09/20/rubymotion-for-android/">RubyMotion for Android を使ってみる</a></h1>
-    
-    
-      <p class="meta">
-        
-  
-
-
-  
-    <span class="byline author vcard">by <a href="https://plus.google.com/+FumihikoShiroyama?rel=author"><span class="fn">Fumihiko Shiroyama</span></a></span>
-  
-
- - 
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-09-20T15:53:05+09:00" pubdate data-updated="true">Sep 20<span>th</span>, 2014</time> - 
-        
-
-posted in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/android/'>Android</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/rubykaigi/'>RubyKaigi</a>, <a class='category' href='/blog/categories/rubymotion/'>RubyMotion</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>9/16日、<a href="http://blog.rubymotion.com/post/97668474211/announcing-the-public-beta-of-rubymotion-for-android" title="公式ブログ">RubyMotion が Android に対応し public Beta として公開された。</a></p>
+  <entry>
+    <title type="html"><![CDATA[RubyMotion for Android を使ってみる]]></title>
+    <link href="http://blog.shiroyama.us/blog/2014/09/20/rubymotion-for-android/"/>
+    <updated>2014-09-20T15:53:05+09:00</updated>
+    <id>http://blog.shiroyama.us/blog/2014/09/20/rubymotion-for-android</id>
+    <content type="html"><![CDATA[<p>9/16日、<a href="http://blog.rubymotion.com/post/97668474211/announcing-the-public-beta-of-rubymotion-for-android" title="公式ブログ">RubyMotion が Android に対応し public Beta として公開された。</a></p>
 
 <p>9/18〜20まで開催された <a href="http://rubykaigi.org/2014/" title="RubyKaigi 2014">RubyKaigi 2014</a> でも <a href="http://rubykaigi.org/2014/presentation/S-LaurentSansonetti" title="Inside RubyMotion for Android">RubyMotion for Android に関するセッション</a> があり、かなり感銘を受けたのでブログにまとめることにする。</p>
 
@@ -481,7 +284,7 @@ posted in
 
 <p><a href="http://sites.fastspring.com/hipbyte/product/rubymotion" title="公式サイト">公式サイト</a> から早速購入してみよう。RubyKaigi 期間中はなんと15%オフ（毎年恒例らしい）なのだが、ブログにまとめるのをモタモタしているうちに閉会してしまった…</p>
 
-<p><img src="/images/rubymotion/rubymotion01.jpg" title="buy rubymotion" alt="buy rubymotion"></p>
+<p><img src="http://blog.shiroyama.us/images/rubymotion/rubymotion01.jpg" title="buy rubymotion" alt="buy rubymotion"></p>
 
 <p>購入し終わると登録したメールアドレス宛にライセンスキーとインストーラのダウンロードリンクが届く。 ダウンロードリンクは忘れがちなのでメールは保存しておこう。</p>
 
@@ -662,7 +465,7 @@ posted in
 
 <p>とすると下図のようなウィンドウが表示される。</p>
 
-<p><img src="/images/rubymotion/rubymotion02.jpg" title="SDK Manager" alt="SDK Manager"></p>
+<p><img src="http://blog.shiroyama.us/images/rubymotion/rubymotion02.jpg" title="SDK Manager" alt="SDK Manager"></p>
 
 <p>対応する API レベルのパッケージをとりあえず全部入れておけば間違いない。 ※4</p>
 
@@ -730,7 +533,7 @@ posted in
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p><img src="/images/rubymotion/rubymotion03.png" title="Hello World 01" alt="Hello World 01"></p>
+<p><img src="http://blog.shiroyama.us/images/rubymotion/rubymotion03.png" title="Hello World 01" alt="Hello World 01"></p>
 
 <p>もし以下の様なエラーが表示されたら、期待した API バージョンに対してビルドされていない。</p>
 
@@ -811,7 +614,7 @@ posted in
 
 <p>保存して rake device すると以下のような画面が表示されるはずだ。</p>
 
-<p><img src="/images/rubymotion/rubymotion04.png" title="Hello World 02" alt="Hello World 02"></p>
+<p><img src="http://blog.shiroyama.us/images/rubymotion/rubymotion04.png" title="Hello World 02" alt="Hello World 02"></p>
 
 <p>コードの内容は簡単で、</p>
 
@@ -892,7 +695,7 @@ posted in
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p><img src="/images/rubymotion/rubymotion05.png" title="Hello World 03" alt="Hello World 03"></p>
+<p><img src="http://blog.shiroyama.us/images/rubymotion/rubymotion05.png" title="Hello World 03" alt="Hello World 03"></p>
 
 <p>なんと、対話的に TextView オブジェクトを取り出し、あまつさえ値をセットしなおして即座に端末に反映されてしまった！</p>
 
@@ -1007,64 +810,15 @@ posted in
 
 
 <p>※6 Read Eval Print Loop のこと。その名のごとく、書いたコードを対話的に逐次評価して表示してくれるツール。 個人的に REPL を提供しない言語はクソ言語認定している。</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-</div>
-
-      </article>
-    
-    
-      <article class="span4">
-        <div class="article-format">
-
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/04/28/turned31/">恥ずかしながら31歳になりました</a></h1>
-    
-    
-      <p class="meta">
-        
-  
-
-
-  
-    <span class="byline author vcard">by <a href="https://plus.google.com/+FumihikoShiroyama?rel=author"><span class="fn">Fumihiko Shiroyama</span></a></span>
-  
-
- - 
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-04-28T23:18:46+09:00" pubdate data-updated="true">Apr 28<span>th</span>, 2014</time> - 
-        
-
-posted in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/life/'>Life</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>31歳になった。<br/>
+  <entry>
+    <title type="html"><![CDATA[恥ずかしながら31歳になりました]]></title>
+    <link href="http://blog.shiroyama.us/blog/2014/04/28/turned31/"/>
+    <updated>2014-04-28T23:18:46+09:00</updated>
+    <id>http://blog.shiroyama.us/blog/2014/04/28/turned31</id>
+    <content type="html"><![CDATA[<p>31歳になった。<br/>
 未だ年齢と実力が伴っておらず恥ずかしい限りであるが、何とかソフトウェアを書いて口に糊することが出来ている。</p>
 
 <h4>30歳を振り返って</h4>
@@ -1118,64 +872,15 @@ posted in
 
 <p>今年一年は地味な年になるかもしれないが、肥料のないところに苗だけ植えても仕方がないのだ。地道に頑張ろうと思う。<br/>
 ご指導ご鞭撻のほど、宜しくお願い致します。</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-</div>
-
-      </article>
-    
-    
-      <article class="span4">
-        <div class="article-format">
-
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/03/18/deploygate/">Android エンジニアが DeployGate を知らないのは恥と心得よ</a></h1>
-    
-    
-      <p class="meta">
-        
-  
-
-
-  
-    <span class="byline author vcard">by <a href="https://plus.google.com/+FumihikoShiroyama?rel=author"><span class="fn">Fumihiko Shiroyama</span></a></span>
-  
-
- - 
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-03-18T23:43:44+09:00" pubdate data-updated="true">Mar 18<span>th</span>, 2014</time> - 
-        
-
-posted in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/android/'>Android</a>, <a class='category' href='/blog/categories/deploygate/'>DeployGate</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="https://deploygate.com/?locale=ja" title="DeployGate">DeployGate</a> は Android 開発においてもはや欠かすことが出来ない。<br/>
+  <entry>
+    <title type="html"><![CDATA[Android エンジニアが DeployGate を知らないのは恥と心得よ]]></title>
+    <link href="http://blog.shiroyama.us/blog/2014/03/18/deploygate/"/>
+    <updated>2014-03-18T23:43:44+09:00</updated>
+    <id>http://blog.shiroyama.us/blog/2014/03/18/deploygate</id>
+    <content type="html"><![CDATA[<p><a href="https://deploygate.com/?locale=ja" title="DeployGate">DeployGate</a> は Android 開発においてもはや欠かすことが出来ない。<br/>
 ところが未だに DeployGate を使っていない Android エンジニアを非常に多く見かける。<br/>
 これは、デザイナが Photoshop を知らないに等しい勿体なさである。</p>
 
@@ -1183,7 +888,7 @@ posted in
 
 <p>DeployGate とは Android の apk を爆速でテスト配布するためのサービスである。</p>
 
-<p><img src="/images/deploygate/deploygate01.jpg" title="deploygate preview" alt="deploygate preview"></p>
+<p><img src="http://blog.shiroyama.us/images/deploygate/deploygate01.jpg" title="deploygate preview" alt="deploygate preview"></p>
 
 <p>最初に申し上げておきたいのが、DeployGate は <strong> <a href="https://play.google.com/apps/publish/">Google Play Developer Console</a> のアルファ配布／ベータ配布とは目的が異なる。</strong><br/>
 そしてこれも断言しておきたいが、多くの Android 開発者に必要なのは DeployGate の方である。 順番に見て行きたいと思う。</p>
@@ -1252,67 +957,67 @@ posted in
 <p>早速 DeployGate を使ってみよう。もちろん無料だ。<br/>
 <a href="https://deploygate.com/?locale=ja">https://deploygate.com/?locale=ja</a> にアクセスして「無料で試してみる」をクリックする。</p>
 
-<p><img src="/images/deploygate/deploygate02.jpg" title="deploygate sign-up" alt="deploygate sign-up"></p>
+<p><img src="http://blog.shiroyama.us/images/deploygate/deploygate02.jpg" title="deploygate sign-up" alt="deploygate sign-up"></p>
 
 <p>サインアップは30秒で終わる。<br/>
 望むならば GitHub アカウント等を使っても良い。</p>
 
-<p><img src="/images/deploygate/deploygate03.jpg" title="deploygate sign-up 02" alt="deploygate sign-up 02"></p>
+<p><img src="http://blog.shiroyama.us/images/deploygate/deploygate03.jpg" title="deploygate sign-up 02" alt="deploygate sign-up 02"></p>
 
 <p>早速 apk ファイルをアップロードしてみよう。<br/>
 「アップロード」ボタンを押して apk ファイルの場所を指定するだけだ。</p>
 
-<p><img src="/images/deploygate/deploygate04.jpg" title="deploygate upload" alt="deploygate upload"></p>
+<p><img src="http://blog.shiroyama.us/images/deploygate/deploygate04.jpg" title="deploygate upload" alt="deploygate upload"></p>
 
 <p>このバージョンの説明を簡単に記入し「アップロード」ボタンをクリック。</p>
 
-<p><img src="/images/deploygate/deploygate05.jpg" title="deploygate upload 02" alt="deploygate upload 02"></p>
+<p><img src="http://blog.shiroyama.us/images/deploygate/deploygate05.jpg" title="deploygate upload 02" alt="deploygate upload 02"></p>
 
 <p>アップロードが完了した。<br/>
 驚くべきことに、すぐさま読み取れる QR コードと、メールで共有したり出来る静的なリンクが生成されている。</p>
 
-<p><img src="/images/deploygate/deploygate06.jpg" title="deploygate upload complete" alt="deploygate upload complete"></p>
+<p><img src="http://blog.shiroyama.us/images/deploygate/deploygate06.jpg" title="deploygate upload complete" alt="deploygate upload complete"></p>
 
 <h3>DeployGate から apk をインストールしてみよう</h3>
 
 <p>では早速 apk をインストールしてみよう。<br/>
 まずは Play ストアから DeployGate をインストールする。</p>
 
-<p><img src="/images/deploygate/deploygate07.jpg" title="install deploygate" alt="install deploygate"></p>
+<p><img src="http://blog.shiroyama.us/images/deploygate/deploygate07.jpg" title="install deploygate" alt="install deploygate"></p>
 
 <p>DeployGate を起動しよう。<br/>
 ここでは試しに先ほどの画面の QR コードを読み取って見るとしよう。</p>
 
-<p><img src="/images/deploygate/deploygate08.jpg" title="deploygate QR code" alt="deploygate QR code"></p>
+<p><img src="http://blog.shiroyama.us/images/deploygate/deploygate08.jpg" title="deploygate QR code" alt="deploygate QR code"></p>
 
 <p>QR コードリーダーが立ち上がり、先ほどの画面にかざすだけでアプリの情報を取得できる。</p>
 
-<p><img src="/images/deploygate/deploygate09.jpg" title="deploygate QR code 02" alt="deploygate QR code 02"></p>
+<p><img src="http://blog.shiroyama.us/images/deploygate/deploygate09.jpg" title="deploygate QR code 02" alt="deploygate QR code 02"></p>
 
 <p>アカウントがなければここからも登録できるし、ログインも出来る。</p>
 
-<p><img src="/images/deploygate/deploygate10.jpg" title="deploygate login" alt="deploygate login"></p>
+<p><img src="http://blog.shiroyama.us/images/deploygate/deploygate10.jpg" title="deploygate login" alt="deploygate login"></p>
 
 <p>自分のアカウントでログインしよう。</p>
 
-<p><img src="/images/deploygate/deploygate11.jpg" title="deploygate login 02" alt="deploygate login 02"></p>
+<p><img src="http://blog.shiroyama.us/images/deploygate/deploygate11.jpg" title="deploygate login 02" alt="deploygate login 02"></p>
 
 <p>アプリが表示された！<br/>
 「インストール」をクリックしてインストールしてみよう。<br/>
 以下、インストール完了まで一本道なので補足は省略する。</p>
 
-<p><img src="/images/deploygate/deploygate12.jpg" title="deploygate install 01" alt="deploygate install 01">
-<img src="/images/deploygate/deploygate13.jpg" title="deploygate install 02" alt="deploygate install 02">
-<img src="/images/deploygate/deploygate14.jpg" title="deploygate install 03" alt="deploygate install 03">
-<img src="/images/deploygate/deploygate15.jpg" title="deploygate install 04" alt="deploygate install 04">
-<img src="/images/deploygate/deploygate16.jpg" title="deploygate install 05" alt="deploygate install 05">
-<img src="/images/deploygate/deploygate17.jpg" title="deploygate install 06" alt="deploygate install 06"></p>
+<p><img src="http://blog.shiroyama.us/images/deploygate/deploygate12.jpg" title="deploygate install 01" alt="deploygate install 01">
+<img src="http://blog.shiroyama.us/images/deploygate/deploygate13.jpg" title="deploygate install 02" alt="deploygate install 02">
+<img src="http://blog.shiroyama.us/images/deploygate/deploygate14.jpg" title="deploygate install 03" alt="deploygate install 03">
+<img src="http://blog.shiroyama.us/images/deploygate/deploygate15.jpg" title="deploygate install 04" alt="deploygate install 04">
+<img src="http://blog.shiroyama.us/images/deploygate/deploygate16.jpg" title="deploygate install 05" alt="deploygate install 05">
+<img src="http://blog.shiroyama.us/images/deploygate/deploygate17.jpg" title="deploygate install 06" alt="deploygate install 06"></p>
 
 <p>見事インストールされた！</p>
 
 <p>もしかしたら開発中のアプリは「設定」から「提供元不明のアプリ」にチェックを入れないとインストールできないかもしれないが、Android 開発者の皆さんには釈迦に説法だろう。</p>
 
-<p><img src="/images/deploygate/deploygate18.jpg" title="deploygate unknown app" alt="deploygate unknown app"></p>
+<p><img src="http://blog.shiroyama.us/images/deploygate/deploygate18.jpg" title="deploygate unknown app" alt="deploygate unknown app"></p>
 
 <h3>apk を更新してみよう</h3>
 
@@ -1320,19 +1025,19 @@ posted in
 
 <p>これまでと同じように DeployGate のログイン後画面から最新の apk をアップロードする。</p>
 
-<p><img src="/images/deploygate/deploygate19.jpg" title="deploygate update app" alt="deploygate update app"></p>
+<p><img src="http://blog.shiroyama.us/images/deploygate/deploygate19.jpg" title="deploygate update app" alt="deploygate update app"></p>
 
 <p>アップロードすると即座に更新がプッシュ通知される。</p>
 
-<p><img src="/images/deploygate/deploygate20.jpg" title="deploygate push notification" alt="deploygate push notification"></p>
+<p><img src="http://blog.shiroyama.us/images/deploygate/deploygate20.jpg" title="deploygate push notification" alt="deploygate push notification"></p>
 
 <p>更新ボタンを押すだけで最新の配布を試すことが出来る。</p>
 
-<p><img src="/images/deploygate/deploygate21.jpg" title="deploygate update app 02" alt="deploygate update app 02"></p>
+<p><img src="http://blog.shiroyama.us/images/deploygate/deploygate21.jpg" title="deploygate update app 02" alt="deploygate update app 02"></p>
 
 <p>すぐさま新機能の更新を確認することが出来た！なんと簡単なのか！</p>
 
-<p><img src="/images/deploygate/deploygate22.jpg" title="deploygate update app 03" alt="deploygate update app 03"></p>
+<p><img src="http://blog.shiroyama.us/images/deploygate/deploygate22.jpg" title="deploygate update app 03" alt="deploygate update app 03"></p>
 
 <h3>開発者やテスタを追加しよう</h3>
 
@@ -1342,15 +1047,15 @@ posted in
 開発者として追加した場合には今自分がやっているのと同等の権限がメンバに与えられる。<br/>
 テスタとして追加した場合にはアプリのテストのみが行える。</p>
 
-<p><img src="/images/deploygate/deploygate23.jpg" title="deploygate test distribution 01" alt="deploygate test distribution 01"></p>
+<p><img src="http://blog.shiroyama.us/images/deploygate/deploygate23.jpg" title="deploygate test distribution 01" alt="deploygate test distribution 01"></p>
 
 <p>招待されるとメールが届くのでリンクをクリックする。</p>
 
-<p><img src="/images/deploygate/deploygate24.jpg" title="deploygate test distribution 02" alt="deploygate test distribution 02"></p>
+<p><img src="http://blog.shiroyama.us/images/deploygate/deploygate24.jpg" title="deploygate test distribution 02" alt="deploygate test distribution 02"></p>
 
 <p>メンバとして追加された！後はこれまでに見てきたのと同じようにテスト配布を受け取ることができる！説明の必要がないほど直感的で簡単である。</p>
 
-<p><img src="/images/deploygate/deploygate25.jpg" title="deploygate test distribution 03" alt="deploygate test distribution 03"></p>
+<p><img src="http://blog.shiroyama.us/images/deploygate/deploygate25.jpg" title="deploygate test distribution 03" alt="deploygate test distribution 03"></p>
 
 <h3>まとめ</h3>
 
@@ -1358,64 +1063,15 @@ posted in
 DeployGate がどれだけ簡単でどれほど Android 開発に必要不可欠かお分かりいただけたと思う。</p>
 
 <p>次エントリでは、Android アプリに DeployGate SDK を組み込んで、リモートからクラッシュレポートを収集する方法等を解説したい。</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-</div>
-
-      </article>
-    
-    
-      <article class="span4">
-        <div class="article-format">
-
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/02/26/octopress/">エンジニアのブログは Octopress が最適</a></h1>
-    
-    
-      <p class="meta">
-        
-  
-
-
-  
-    <span class="byline author vcard">by <a href="https://plus.google.com/+FumihikoShiroyama?rel=author"><span class="fn">Fumihiko Shiroyama</span></a></span>
-  
-
- - 
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-02-26T23:54:23+09:00" pubdate data-updated="true">Feb 26<span>th</span>, 2014</time> - 
-        
-
-posted in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/octopress/'>Octopress</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>ブログを Octopress に移行した</h3>
+  <entry>
+    <title type="html"><![CDATA[エンジニアのブログは Octopress が最適]]></title>
+    <link href="http://blog.shiroyama.us/blog/2014/02/26/octopress/"/>
+    <updated>2014-02-26T23:54:23+09:00</updated>
+    <id>http://blog.shiroyama.us/blog/2014/02/26/octopress</id>
+    <content type="html"><![CDATA[<h3>ブログを Octopress に移行した</h3>
 
 <p>既存のブログを <a href="http://octopress.org/" title="Octopress">Octopress</a> に移行した。<br/>
 理由は以下の通りである。</p>
@@ -1503,7 +1159,7 @@ GitHub に <code>your_name.github.io</code> というリポジトリを作成し
 
 <p><code>http://localhost:4000/</code> にアクセスすると、ブログのプレビューを見ることが出来る。</p>
 
-<p><img src="/images/2014-02-26/octopress_preview.png" title="octopress preview" alt="octopress preview"></p>
+<p><img src="http://blog.shiroyama.us/images/2014-02-26/octopress_preview.png" title="octopress preview" alt="octopress preview"></p>
 
 <h3>Octopress の初期設定</h3>
 
@@ -1809,157 +1465,7 @@ DNS の設定等は GitHub Pages で独自ドメインを使う時と同様で�
 <h3>その他</h3>
 
 <p>思いついたら追記する。</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-</div>
-
-      </article>
-    
-    </div>
-      <div class="row">
-        <ul class="pager">
-          
-          
-        </ul>
-      </div>
-  </div>
-</div>
-
-
-  <div id="footer-widgets">
-  <div class="container">
-    <div class="row">
-  <div class="span3">
-    <h2>recent posts</h2>
-    <ul class="recent_posts">
-      
-        <li>
-          <a href="/blog/2014/10/03/rubymotion-android-custom-application-class/">RubyMotion for Android でカスタム Appliation クラスを利用する</a>
-        </li>
-      
-        <li>
-          <a href="/blog/2014/09/20/rubymotion-for-android/">RubyMotion for Android を使ってみる</a>
-        </li>
-      
-        <li>
-          <a href="/blog/2014/04/28/turned31/">恥ずかしながら31歳になりました</a>
-        </li>
-      
-        <li>
-          <a href="/blog/2014/03/18/deploygate/">Android エンジニアが DeployGate を知らないのは恥と心得よ</a>
-        </li>
-      
-        <li>
-          <a href="/blog/2014/02/26/octopress/">エンジニアのブログは Octopress が最適</a>
-        </li>
-      
-    </ul>
-    <h2><a href="/blog/archives">archives</a></h2>
-  </div>
-  <div class="span3">
-    
-
-  </div>
-  <div class="span4">
-    
-<h2>twitter</h2>
-<a href="https://twitter.com/fushiroyama" class="twitter-follow-button" data-show-count="true" data-lang="en">Follow @fushiroyama</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-<div class="tweet" data-twitter-user="fushiroyama">
-</div>
-
-
-  </div>
-  <div class="span2">
-    <h2>found on</h2>
-
-<a href="https://github.com/srym/" rel="tooltip" title="Github"><img class="social_icon" title="Github" alt="github icon" src="/images/glyphicons_381_github.png"></a>
-
-
-
-
-
-
-
-<a href="http://twitter.com/fushiroyama" rel="tooltip" title="Twitter"><img class="social_icon" title="Twitter" alt="Twitter icon" src="/images/glyphicons_391_twitter_t.png"></a>
-
-
-
-<a href="https://plus.google.com/+FumihikoShiroyama?rel=author" rel="tooltip" title="Google Plus"><img class="social_icon" title="Google Plus" alt="Google Plus icon" src="/images/glyphicons_386_google_plus.png"></a>
-
-
-
-
-
-
-  </div>
-</div>
-
-  </div>
-</div>
-<footer class="footer">
-  <div class="container">
-    <p class="pull-left">
-  <a href="/">白山軟件有限公司</a>
-  - Copyright &copy; 2014 - Fumihiko Shiroyama
-</p>
-<p class="pull-right">
-  <span>Powered by <a href="http://octopress.org/">Octopress</a>.</span>
-  
-    <span>Designed by <a href="http://www.AdrianArtiles.com">Adrian Artiles</a>.</span>
-  
-</p>
-
-  </div>
-</footer>
-
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
-<script>window.jQuery || document.write('<script src="/javascripts/libs/jquery-1.7.2.min.js" type="text/javascript"><\/script>')</script>
-<script src="/javascripts/libs/bootstrap.min.js" type="text/javascript"></script>
-<script src="/javascripts/jquery.tweet.js" type="text/javascript"></script>
-<script src="/javascripts/jquery.instagram.js" type="text/javascript"></script>
-<script src="/javascripts/libs/jquery.masonry.min.js" type="text/javascript"></script>
-<script src="/javascripts/custom.js" type="text/javascript"></script>
-
-
-
-
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
-
-
-  <script type="text/javascript">
-    (function() {
-      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
-      script.src = 'https://apis.google.com/js/plusone.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
-    })();
-  </script>
-
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
-
-
-</body>
-</html>
+</feed>
