@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Android | 白山軟件有限公司]]></title>
   <link href="http://blog.shiroyama.us/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://blog.shiroyama.us/"/>
-  <updated>2014-10-03T22:49:29+09:00</updated>
+  <updated>2014-10-03T22:51:44+09:00</updated>
   <id>http://blog.shiroyama.us/</id>
   <author>
     <name><![CDATA[Fumihiko Shiroyama]]></name>
@@ -20,7 +20,8 @@
     <id>http://blog.shiroyama.us/blog/2014/10/03/rubymotion-android-custom-application-class</id>
     <content type="html"><![CDATA[<p><a href="http://www.rubymotion.com/" title="RubyMotion">RubyMotion</a> のバージョンが 3.1 になり、Android 版でカスタム Application クラスが利用できるようになった。</p>
 
-<p>実を言うとこれまでは独自定義の Android クラスを利用することが出来なかったのだが、その旨 RubyMotion のサポートで質問したところ、作者の Laurent さんが一瞬で対応してくれたのだ。<strong>なんてCOOLなんだ！みんなも RubyMotion を買おう！</strong></p>
+<p>実を言うとこれまでは独自定義の Android クラスを利用することが出来なかったのだが、その旨 RubyMotion のサポートで質問したところ、作者の Laurent さんが一瞬で対応してくれたのだ。<br/>
+<strong>なんてCOOLなんだ！みんなも RubyMotion を買おう！</strong></p>
 
 <p>独自 Application クラスの使い方を簡単に紹介しておく。RubyMotion for Android の入門に関しては前回書いた<a href="http://blog.shiroyama.us/blog/2014/09/20/rubymotion-for-android/" title="RubyMotion for Android を使ってみる">拙エントリ</a>を参考にして欲しい。</p>
 
