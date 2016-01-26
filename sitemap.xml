@@ -14,20 +14,52 @@
     </url>
     <url>
         <loc>http://blog.shiroyama.us/blog/2014/09/20/rubymotion-for-android/</loc>
-        <lastmod>2014-10-03T21:06:50+09:00</lastmod>
+        <lastmod>2014-12-04T21:35:15+09:00</lastmod>
     </url>
     <url>
         <loc>
             http://blog.shiroyama.us/blog/2014/10/03/rubymotion-android-custom-application-class/
         </loc>
-        <lastmod>2014-10-03T22:51:39+09:00</lastmod>
+        <lastmod>2014-12-04T21:35:15+09:00</lastmod>
+    </url>
+    <url>
+        <loc>http://blog.shiroyama.us/blog/2015/03/17/paredit-vim/</loc>
+        <lastmod>2015-08-06T22:29:27+09:00</lastmod>
+    </url>
+    <url>
+        <loc>http://blog.shiroyama.us/blog/2015/03/21/vim-operator-mdurl/</loc>
+        <lastmod>2015-08-06T22:29:27+09:00</lastmod>
+    </url>
+    <url>
+        <loc>http://blog.shiroyama.us/blog/2015/03/21/docker-on-mac/</loc>
+        <lastmod>2015-08-06T22:29:27+09:00</lastmod>
+    </url>
+    <url>
+        <loc>http://blog.shiroyama.us/blog/2015/04/25/droidkaigi/</loc>
+        <lastmod>2015-08-06T22:29:27+09:00</lastmod>
+    </url>
+    <url>
+        <loc>http://blog.shiroyama.us/blog/2015/04/26/32th/</loc>
+        <lastmod>2015-08-06T22:29:27+09:00</lastmod>
+    </url>
+    <url>
+        <loc>http://blog.shiroyama.us/blog/2015/08/09/optional-in-android/</loc>
+        <lastmod>2016-01-26T11:55:10+09:00</lastmod>
+    </url>
+    <url>
+        <loc>http://blog.shiroyama.us/blog/2015/08/10/gcp-centos-tcp-tw-recycle/</loc>
+        <lastmod>2016-01-26T11:55:10+09:00</lastmod>
+    </url>
+    <url>
+        <loc>http://blog.shiroyama.us/blog/2015/08/10/either-in-android/</loc>
+        <lastmod>2016-01-26T11:55:10+09:00</lastmod>
     </url>
     <url>
         <loc>http://blog.shiroyama.us/blog/archives/</loc>
-        <lastmod>2014-10-03T22:51:39+09:00</lastmod>
+        <lastmod>2016-01-26T11:55:10+09:00</lastmod>
     </url>
     <url>
         <loc>http://blog.shiroyama.us/</loc>
-        <lastmod>2014-10-03T22:51:39+09:00</lastmod>
+        <lastmod>2016-01-26T11:55:10+09:00</lastmod>
     </url>
 </urlset>

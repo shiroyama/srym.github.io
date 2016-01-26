@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: GCE | post <$> shiroyama <*> blog]]></title>
+  <link href="http://blog.shiroyama.us/blog/categories/gce/atom.xml" rel="self"/>
+  <link href="http://blog.shiroyama.us/"/>
+  <updated>2016-01-26T12:13:31+09:00</updated>
+  <id>http://blog.shiroyama.us/</id>
+  <author>
+    <name><![CDATA[Fumihiko Shiroyama]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[GCPのCentOSでtcp_tw_recycleが有効になっていてハマった]]></title>
+    <link href="http://blog.shiroyama.us/blog/2015/08/10/gcp-centos-tcp-tw-recycle/"/>
+    <updated>2015-08-10T01:10:51+09:00</updated>
+    <id>http://blog.shiroyama.us/blog/2015/08/10/gcp-centos-tcp-tw-recycle</id>
+    <content type="html"><![CDATA[<p>Google Cloud Platform（以下GCP）を評価中であるが、Google Compute Engine（以下GCE）でCentOS 6をイメージとして選択してインスタンスを起動してSocket.IO環境を構築したところ、AndroidとGCE間で <strong>時々</strong> 原因不明のSSLハンドシェイク失敗に悩まされ非常にハマった。</p>
+
+<p>結論から言うと、当該インスタンスでは <code>net.ipv4.tcp_tw_recycle</code> が有効になっていた。これを無効にすることで問題は解決した。</p>
+
+<p>```bash
+% sysctl net.ipv4.tcp_tw_recycle
+net.ipv4.tcp_tw_recycle = 1</p>
+
+<p>% sudo sysctl -w net.ipv4.tcp_tw_recycle=0
+% sysctl net.ipv4.tcp_tw_recycle
+net.ipv4.tcp_tw_recycle = 0
+```</p>
+
+<p>設定を永続化させたかったら <code>/etc/sysctl.conf</code> に書けば良い。</p>
+
+<p>ちなみに <code>net.ipv4.tcp_tw_recycle</code> はTIME_WAIT状態のソケットを効率的に再利用するためのLinuxカーネル特有の仕組みとのこと。<br/>
+これが有効の場合、TCPパケットのタイムスタンプ情報を見て同一IPから新しいパケットが届くと古いソケットを開放するらしい。<br/>
+ただ、同一NAT下の複数端末が同時に接続しに来た場合に各ノードを区別できずに単純に古いものをドロップするような挙動をすることがあるようで、今回の僕のケースはそれに該当するようだ。</p>
+
+<p>（※この辺り門外漢なので記述が正確でなかったらすみません。）</p>
+
+<p>参考までに、AWSのAmazon Linuxの今日時点での最新である<code>Amazon Linux AMI 2015.03</code>で確認したところ、 <code>net.ipv4.tcp_tw_recycle = 0</code> となっており無効であるようだ。<br/>
+個人的にはこれに合わせておくと無難だろうと判断した。</p>
+
+<p>なお、GCEのどのイメージでも同様かどうかは一切確認してない。CentOS 6なんていう古いのを選んだのも、Amazon Linuxからの移行コストが一番少なそうだからで、普通に新規構築するならCentOSみたいな保守的で新陳代謝の遅いディストロは特に選択するメリットも無い気がする。</p>
+
+<p>ただ、この問題そのものは原因究明に非常〜〜〜に苦労した（WireSharkやらtcpdumpやら使いまくった。途中マジで死のうかと思った）ので、同じような人が居るかも知れないのでブログにまとめておく。</p>
+
+<p>以下参考リンク</p>
+
+<ul>
+<li><a href="http://serverfault.com/questions/235965/why-would-a-server-not-send-a-syn-ack-packet-in-response-to-a-syn-packet" title="Why would a server not send a SYN/ACK packet in response to a SYN packet">Why would a server not send a SYN/ACK packet in response to a SYN packet</a></li>
+<li><a href="http://d.hatena.ne.jp/pullphone/20120511/1336722675" title="「net.ipv4.tcp_tw_recycle」を有効にするのは（場合によっては）やめた方がいい">「net.ipv4.tcp_tw_recycle」を有効にするのは（場合によっては）やめた方がいい</a></li>
+<li><a href="http://blog.kamipo.net/entry/20110401/1301660084" title="NAT環境下では net.ipv4.tcp_timestamps = 0 する">NAT環境下では net.ipv4.tcp_timestamps = 0 する</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>
