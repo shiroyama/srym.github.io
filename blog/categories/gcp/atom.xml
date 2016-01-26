@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: GCP | post <$> shiroyama <*> blog]]></title>
+  <title><![CDATA[Category: GCP | do blog <- post]]></title>
   <link href="http://blog.shiroyama.us/blog/categories/gcp/atom.xml" rel="self"/>
   <link href="http://blog.shiroyama.us/"/>
-  <updated>2016-01-26T12:16:16+09:00</updated>
+  <updated>2016-01-26T12:27:33+09:00</updated>
   <id>http://blog.shiroyama.us/</id>
   <author>
     <name><![CDATA[Fumihiko Shiroyama]]></name>
